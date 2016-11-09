@@ -1,100 +1,79 @@
 from inverseKinematics import *
-import numpy as np
+import Queue
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import timeit
 
-ideal_arm = []
-ideal_leg = []
 
-arm = 10
-leg = 20
+def main():
+    global leg1_q, leg2_q
+    ideal_arm = []
+    ideal_leg = []
 
-# start = timeit.default_timer()
-#
-# for num in range(0,100):
-#     for i in range(10,22):
-#         theta1, theta2, theta3 = inverseKinematic(0, 0, i, arm, leg)
-#
-# stop = timeit.default_timer()
-# print stop - start
+    arm = 10
+    leg = 20
 
-#parabola function between 2 points
+    first_pos = [0, 0, 0]
+    new_pos = [2, 2, 0]
 
-start_pt = np.array([0, 0, 0])
-end_pt = np.array([2, 5, 0])
+    first_pos2 = [1, 1, 0]
+    new_pos2 = [3, 3, 0]
 
-step_height = 3     #the height difference between steps, relative offset from start Z
+    #step(curr_pos, new_pos)
 
-# mid_x = (start_pt[0] + end_pt[0]) / float(2)
-# mid_y = (start_pt[1] + end_pt[1]) / float(2)
-mid = (start_pt + end_pt) / float(2)
+    leg1_q = Queue.Queue(maxsize=0)
+    leg2_q = Queue.Queue(maxsize=0)
 
-mid_pt = np.array([mid[0], mid[1], mid[2]+step_height])
+    curr_pos = step_2(leg1_q, first_pos, new_pos, 5)
+    curr_pos = step_2(leg2_q, first_pos2, new_pos2, 5)
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-
-# for t in np.arange(0, 1, 0.001):
-t = np.arange(0, 1, 0.001)
-
-start = timeit.default_timer()
-
-x_pt = start_pt[0] - (t * (3*start_pt[0] - 4*mid_pt[0] + end_pt[0])) + 2*t*t*(start_pt[0] - 2*mid_pt[0] + end_pt[0])
-y_pt = start_pt[1] - (t * (3*start_pt[1] - 4*mid_pt[1] + end_pt[1])) + 2*t*t*(start_pt[1] - 2*mid_pt[1] + end_pt[1])
-z_pt = start_pt[2] - (t * (3*start_pt[2] - 4*mid_pt[2] + end_pt[2])) + 2*t*t*(start_pt[2] - 2*mid_pt[2] + end_pt[2])
-
-stop = timeit.default_timer()
-print stop - start
-
-#ax.scatter(sample_pt[0], sample_pt[1], sample_pt[2])
-ax.scatter(x_pt, y_pt, z_pt)
+    while (leg1_q.empty() != True or leg2_q.empty() != True):
+        print leg1_q.get()
+        print leg2_q.get()
 
 
-
-plt.show()
-
+    #curr_pos = step_2(curr_pos, first_pos, 0)
 
 
+def step_2(leg, curr_pos, new_pos, step_height):
+    global leg1_q
+    #parabola function between 2 points
+    start = timeit.default_timer()
 
-# for t in np.arange(0.01, 1, 0.001):
-#     # Pc = (start_pt * t * t) + (mid_pt * 2 * t * (1 - t)) + (end_pt * (1 - t) * (1 - t))
-#     # curr_pos = (Pc - (start_pt * t * t) - (end_pt * t * t)) / t
-#
-#     curr_pos = (mid_pt / (2 * t * (1 - t))) - ((start_pt * t) / (2 * (1 -t))) - ((end_pt * (1 - t)) / (2 * t))
-#
-#     print curr_pos
+    start_pt = np.array([curr_pos[0], curr_pos[1], curr_pos[2]])
+    end_pt = np.array([new_pos[0], new_pos[1], new_pos[2]])
 
-#
-# for t in np.arange(0.01, 1, 0.001):
-#     t_1 = t
-#     a2 = ((mid_pt - start_pt) - (t_1 * (end_pt - start_pt))) / (t_1 * (t_1 - 1))
-#     a1 = end_pt - start_pt - a2
-#     curr_pos = (a2 * t_1) + (a1 * t_1) + start_pt
-#     print curr_pos
-#     plt.scatter(curr_pos[0], curr_pos[1])
-#
-# plt.show()
+    #step_height = 5     #the height difference between steps, relative offset from start Z
+    t = np.linspace(0, 1, 10)
+
+    mid = (start_pt + end_pt) / float(2)
+    #mid = (curr_pos + new_pos) / float(2)
+
+    mid_pt = np.array([mid[0], mid[1], mid[2]+step_height])
+
+    x_pts = np.matrix([[curr_pos[0]], [mid_pt[0]], [new_pos[0]]])
+    y_pts = np.matrix([[curr_pos[1]], [mid_pt[1]], [new_pos[1]]])
+    z_pts = np.matrix([[curr_pos[2]], [mid_pt[2]], [new_pos[2]]])
+
+    A_1 = np.matrix([[2, -4, 2], [-3, 4, -1], [1, 0, 0]])
+
+    x_coeff = A_1 * x_pts
+    y_coeff = A_1 * y_pts
+    z_coeff = A_1 * z_pts
+
+    x = x_coeff.item(0)*t*t + x_coeff.item(1)*t + x_coeff.item(2)
+    y = y_coeff.item(0)*t*t + y_coeff.item(1)*t + y_coeff.item(2)
+    z = z_coeff.item(0)*t*t + z_coeff.item(1)*t + z_coeff.item(2)
+
+    stop = timeit.default_timer()
+    print "The Time:", stop - start
+
+    # add the numpy array to the queue
+    map(leg.put, x)
+
+    return new_pos
 
 
-# done, x0, y0, z0 = forward(45, -45, -45, arm, leg)
-# done, x1, y1, z1 = forward(45, 45, 45, arm, leg)
-#
-# print abs(y0*2)
-# print z1
-# for arm in range(5,17):
-#     for leg in range(12, 52):
-#         x, y, z = maxWorkspace(arm, leg)
-#         ideal_arm.append(x)
-#         ideal_arm.append(y)
-#
-# print map(ideal_arm)
+if __name__ == "__main__":
+    main()
 
-# theta_array_1 = np.asarray(theta_list_1)
-# theta_array_2 = np.asarray(theta_list_2)
-# theta_array_3 = np.asarray(theta_list_3)
-
-# fig = plt.figure()
-# ax = fig.add_subplot(111, projection='3d')
-# ax.scatter(theta_array_1, theta_array_2, theta_array_3)
-# plt.show()
