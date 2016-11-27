@@ -1,4 +1,5 @@
 from inverseKinematics import *
+from piecewiseMotion import *
 import Queue
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -14,6 +15,11 @@ def main():
 
     arm = 10
     leg = 20
+
+    position_list = np.matrix([[2, 0, 0], [-2, 0, 0], [2, 0, 0]])
+
+    # print pos_list.item(1)
+    # print pos_list[1,:]
 
     first_pos = [0, 0, 0]
     new_pos = [2, 0, 0]
@@ -43,6 +49,8 @@ def main():
     leg_thread = threading.Thread(target=add_leg1, args=[first_pos, new_pos4])
     leg_thread.start()
 
+    walk_dir(0, 2, 100)
+
     # thread to continually check for user input
 
     # need function for walking
@@ -61,6 +69,48 @@ def main():
         # print leg2_q.get()
         # print leg3_q.get()
         # print leg4_q.get()
+
+# walking gait, can walk in a direction and particular number of steps.
+# The precision is the number incremental steps between the start and stop motions
+def walk_dir(degrees, step_num, precision):
+    #calculate the walking trajectory of one step
+    walking_trajectory = piecewiseMotion(degrees, precision)
+
+    # initialize the index of each leg, offset all of them
+    FL_leg_index = 0
+    FR_leg_index = 25
+    HL_leg_index = 50
+    HR_leg_index = 75
+
+    steps = 0
+
+    # step a certain amount of times
+    while(steps < step_num):
+        print "Front Left:", walking_trajectory[FL_leg_index]
+        print "Front Right:", walking_trajectory[FR_leg_index]
+        print "Hind Left:", walking_trajectory[HL_leg_index]
+        print "Hind Right:", walking_trajectory[HR_leg_index]
+
+        FL_leg_index += 1
+        FR_leg_index += 1
+        HL_leg_index += 1
+        HR_leg_index += 1
+
+        # if reached index limit, loop back and restart index count
+        if FL_leg_index >= precision:
+            FL_leg_index = 0
+            steps += 1                  # keep track of the number of steps taken
+
+        if FR_leg_index >= precision:
+            FR_leg_index = 0
+
+        if HL_leg_index >= precision:
+            HL_leg_index = 0
+
+        if HR_leg_index >= precision:
+            HR_leg_index = 0
+
+
 
 
 # parabola function between 2 points
@@ -126,4 +176,3 @@ def add_leg1(first_pos, new_pos):
 
 if __name__ == "__main__":
     main()
-
