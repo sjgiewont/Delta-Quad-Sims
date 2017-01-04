@@ -1,4 +1,3 @@
-from visual import *
 import numpy as np
 from numpy import sqrt, dot, cross
 from numpy.linalg import norm
