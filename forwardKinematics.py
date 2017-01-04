@@ -98,42 +98,42 @@ def forwardKinematics(theta_1, theta_2, theta_3):
     return foot_pt
 
 
-# theta_low = 150
-# theta_high = 230
-# step = 0.25
-#
-# with open('forward_kinematics_2.csv', 'wb') as csvfile:
-#     spamwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-#     headers = ['x', 'y', 'z', 'theta1', 'theta2', 'theta3']
-#     spamwriter.writerow(headers)
-#     for theta1 in np.arange(theta_low, theta_high, step):
-#         print theta1
-#         for theta2 in np.arange(theta_low, theta_high, step):
-#             for theta3 in np.arange(theta_low, theta_high, step):
-#                 foot_pos = forwardKinematics(theta1, theta2, theta3)
-#                 spamwriter.writerow(foot_pos)
-
-theta_low = 180
-theta_high = 220
+theta_low = 170
+theta_high = 190
 step = 1
 
-X =[]
-Y = []
-Z = []
+with open('fuzzy_train_table_esmall.csv', 'wb') as csvfile:
+    spamwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    headers = ['x', 'y', 'z', 'theta1', 'theta2', 'theta3']
+    spamwriter.writerow(headers)
+    for theta1 in np.arange(theta_low, theta_high, step):
+        print theta1
+        for theta2 in np.arange(theta_low, theta_high, step):
+            for theta3 in np.arange(theta_low, theta_high, step):
+                foot_pos = forwardKinematics(theta1, theta2, theta3)
+                spamwriter.writerow(foot_pos)
 
-for theta1 in np.arange(theta_low, theta_high, step):
-    for theta2 in np.arange(theta_low, theta_high, step):
-        for theta3 in np.arange(theta_low, theta_high, step):
-            foot_pos = forwardKinematics(theta1, theta2, theta3)
-            X.append(theta1)
-            Y.append(theta2)
-            Z.append(foot_pos[1])
-
-print "drawing"
-# X, Y = np.meshgrid(X, Y)
-print X
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-
-ax.scatter(X, Y, Z)
-plt.show()
+# theta_low = 180
+# theta_high = 220
+# step = 1
+#
+# X =[]
+# Y = []
+# Z = []
+#
+# for theta1 in np.arange(theta_low, theta_high, step):
+#     for theta2 in np.arange(theta_low, theta_high, step):
+#         for theta3 in np.arange(theta_low, theta_high, step):
+#             foot_pos = forwardKinematics(theta1, theta2, theta3)
+#             X.append(theta1)
+#             Y.append(theta2)
+#             Z.append(foot_pos[1])
+#
+# print "drawing"
+# # X, Y = np.meshgrid(X, Y)
+# print X
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+#
+# ax.scatter(X, Y, Z)
+# plt.show()
