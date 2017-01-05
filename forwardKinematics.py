@@ -39,20 +39,20 @@ def forwardKinematics(theta_1, theta_2, theta_3):
     leg = 200
 
     # define the position where the arms meet the base
-    base_p1 = np.array([base_radius * cos(np.deg2rad(90)), base_radius * sin(np.deg2rad(90)), 0])
-    base_p2 = np.array([base_radius * cos(np.deg2rad(210)), base_radius * sin(np.deg2rad(210)), 0])
-    base_p3 = np.array([base_radius * cos(np.deg2rad(330)), base_radius * sin(np.deg2rad(330)), 0])
+    base_p1 = np.array([base_radius * np.cos(np.deg2rad(90)), base_radius * np.sin(np.deg2rad(90)), 0])
+    base_p2 = np.array([base_radius * np.cos(np.deg2rad(210)), base_radius * np.sin(np.deg2rad(210)), 0])
+    base_p3 = np.array([base_radius * np.cos(np.deg2rad(330)), base_radius * np.sin(np.deg2rad(330)), 0])
 
     # the first knee, in the universal y,z plane, pointing towards 12 o'clock
-    k1 = base_p1 + np.array([0, -arm * cos(np.deg2rad(theta_1)), arm * sin(np.deg2rad(theta_1))])
+    k1 = base_p1 + np.array([0, -arm * np.cos(np.deg2rad(theta_1)), arm * np.sin(np.deg2rad(theta_1))])
 
     # second knee, pointing near 7 o'clock
-    k2 = base_p2 + np.array([0, -arm * cos(np.deg2rad(theta_2)), arm * sin(np.deg2rad(theta_2))])
-    k2 = np.array([k2[0] * cos(np.deg2rad(120)) - k2[1] * sin(np.deg2rad(120)) + base_p2[0] - cos(np.deg2rad(120)) * base_p2[0] + sin(np.deg2rad(120)) * base_p2[1], k2[0] * sin(np.deg2rad(120)) + k2[1] * cos(np.deg2rad(120)) + base_p2[1] - sin(np.deg2rad(120)) * base_p2[0] - cos(np.deg2rad(120)) * base_p2[1], k2[2]])
+    k2 = base_p2 + np.array([0, -arm * np.cos(np.deg2rad(theta_2)), arm * np.sin(np.deg2rad(theta_2))])
+    k2 = np.array([k2[0] * np.cos(np.deg2rad(120)) - k2[1] * np.sin(np.deg2rad(120)) + base_p2[0] - np.cos(np.deg2rad(120)) * base_p2[0] + np.sin(np.deg2rad(120)) * base_p2[1], k2[0] * np.sin(np.deg2rad(120)) + k2[1] * np.cos(np.deg2rad(120)) + base_p2[1] - np.sin(np.deg2rad(120)) * base_p2[0] - np.cos(np.deg2rad(120)) * base_p2[1], k2[2]])
 
     # third knee, pointing near 5 o'clock
-    k3 = base_p3 + np.array([0, -arm * cos(np.deg2rad(theta_3)), arm * sin(np.deg2rad(theta_3))])
-    k3 = np.array([k3[0] * cos(np.deg2rad(240)) - k3[1] * sin(np.deg2rad(240)) + base_p3[0] - cos(np.deg2rad(240)) * base_p3[0] + sin(np.deg2rad(240)) * base_p3[1], k3[0] * sin(np.deg2rad(240)) + k3[1] * cos(np.deg2rad(240)) + base_p3[1] - sin(np.deg2rad(240)) * base_p3[0] - cos(np.deg2rad(240)) * base_p3[1], k3[2]])
+    k3 = base_p3 + np.array([0, -arm * np.cos(np.deg2rad(theta_3)), arm * np.sin(np.deg2rad(theta_3))])
+    k3 = np.array([k3[0] * np.cos(np.deg2rad(240)) - k3[1] * np.sin(np.deg2rad(240)) + base_p3[0] - np.cos(np.deg2rad(240)) * base_p3[0] + np.sin(np.deg2rad(240)) * base_p3[1], k3[0] * np.sin(np.deg2rad(240)) + k3[1] * np.cos(np.deg2rad(240)) + base_p3[1] - np.sin(np.deg2rad(240)) * base_p3[0] - np.cos(np.deg2rad(240)) * base_p3[1], k3[2]])
 
     # distances between knees
     dist_k1_k2 = np.linalg.norm(k1 - k2)
@@ -101,7 +101,7 @@ theta_low = 170
 theta_high = 190
 step = 1
 
-with open('fuzzy_train_table_esmall.csv', 'wb') as csvfile:
+with open('fuzzy_train_table_test.csv', 'wb') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     headers = ['x', 'y', 'z', 'theta1', 'theta2', 'theta3']
     spamwriter.writerow(headers)
