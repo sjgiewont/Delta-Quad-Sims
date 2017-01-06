@@ -2,9 +2,9 @@ import numpy as np
 from numpy import sqrt, dot, cross
 from numpy.linalg import norm
 import csv
-import sqlite3
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+# import sqlite3
+# import matplotlib.pyplot as plt
+# from mpl_toolkits.mplot3d import Axes3D
 
 
 # Find the intersection of three spheres
@@ -101,7 +101,7 @@ theta_low = 175
 theta_high = 185
 step = 1
 
-with open('fuzzy_train_etable.csv', 'wb') as csvfile:
+with open('fuzzy_train_table.csv', 'wb') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     # headers = ['x', 'y', 'z', 'theta1', 'theta2', 'theta3']
     # spamwriter.writerow(headers)

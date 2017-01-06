@@ -66,7 +66,9 @@ class ANFIS:
             [layerFour, wSum, w] = forwardHalfPass(self, self.X)
 
             #layer five: least squares estimate
+            print "Finding Least Square Element"
             layerFive = np.array(self.LSE(layerFour,self.Y,initialGamma))
+            print "Least Square element found"
             self.consequents = layerFive
             layerFive = np.dot(layerFour,layerFive)
 
@@ -90,7 +92,9 @@ class ANFIS:
             # back propagation
             if convergence is not True:
                 cols = range(len(self.X[0,:]))
+                print "Starting BackProp"
                 dE_dAlpha = list(backprop(self, colX, cols, wSum, w, layerFive) for colX in range(self.X.shape[1]))
+                print "Backprop Finished"
 
 
             if len(self.errors) >= 4:
@@ -102,6 +106,7 @@ class ANFIS:
                     k = k * 0.9
 
             ## handling of variables with a different number of MFs
+            print "handling of variables with a different number of MFs"
             t = []
             for x in range(len(dE_dAlpha)):
                 for y in range(len(dE_dAlpha[x])):
@@ -130,6 +135,7 @@ class ANFIS:
                     for param in range(len(paramList)):
                         self.memFuncs[varsWithMemFuncs][MFs][1][paramList[param]] = self.memFuncs[varsWithMemFuncs][MFs][1][paramList[param]] + dAlpha[varsWithMemFuncs][MFs][param]
             epoch = epoch + 1
+            print "The Current Epoch is: ", epoch
 
 
         self.fittedValues = predict(self,self.X)
@@ -188,6 +194,7 @@ def forwardHalfPass(ANFISObj, Xs):
     wSum = []
 
     for pattern in range(len(Xs[:,0])):
+        print "Forward Pass: ", pattern
         #layer one
         layerOne = ANFISObj.memClass.evaluateMF(Xs[pattern,:])
 
@@ -223,11 +230,11 @@ def backprop(ANFISObj, columnX, columns, theWSum, theW, theLayerFive):
 
     paramGrp = [0]* len(ANFISObj.memFuncs[columnX])
     for MF in range(len(ANFISObj.memFuncs[columnX])):
-
+        print "Backprop MF: ", MF
         parameters = np.empty(len(ANFISObj.memFuncs[columnX][MF][1]))
         timesThru = 0
         for alpha in sorted(ANFISObj.memFuncs[columnX][MF][1].keys()):
-
+            print "BackProp alpha: ", alpha
             bucket3 = np.empty(len(ANFISObj.X))
             for rowX in range(len(ANFISObj.X)):
                 varToTest = ANFISObj.X[rowX,columnX]

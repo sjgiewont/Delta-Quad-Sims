@@ -1,4 +1,3 @@
-from anfis import *
 from myAnfis import anfis
 import membership #import membershipfunction, mfDerivs
 import numpy
@@ -6,7 +5,7 @@ import time
 import cPickle as pickle
 
 # ts = numpy.loadtxt("trainingSet.txt", usecols=[1,2,3])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
-ts = numpy.loadtxt("fuzzy_train_etable.csv", delimiter=',', usecols=[0,1,2,3,4,5])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
+ts = numpy.loadtxt("fuzzy_train_table.csv", delimiter=',', usecols=[0,1,2,3,4,5])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
 
 X = ts[:,0:3]
 Y = ts[:,3:7]
