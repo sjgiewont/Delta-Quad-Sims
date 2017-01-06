@@ -1,4 +1,5 @@
 from anfis import *
+from myAnfis import anfis
 import membership #import membershipfunction, mfDerivs
 import numpy
 import time
