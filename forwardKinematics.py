@@ -97,11 +97,11 @@ def forwardKinematics(theta_1, theta_2, theta_3):
     return foot_pt
 
 
-theta_low = 170
-theta_high = 190
+theta_low = 175
+theta_high = 185
 step = 1
 
-with open('fuzzy_train_table_test.csv', 'wb') as csvfile:
+with open('fuzzy_train_etable.csv', 'wb') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     headers = ['x', 'y', 'z', 'theta1', 'theta2', 'theta3']
     spamwriter.writerow(headers)

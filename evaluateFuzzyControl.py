@@ -10,7 +10,7 @@ with open('fuzzycontrol.pkl', 'rb') as f:
 
 
 # var = numpy.array([[3, 4], [3, 4]])
-var = numpy.array([[1, 1, 1]])
+var = numpy.array([[-7.0,-12.7,-138.1]])
 
 print "input", var
 
