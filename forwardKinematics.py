@@ -103,8 +103,8 @@ step = 1
 
 with open('fuzzy_train_etable.csv', 'wb') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-    headers = ['x', 'y', 'z', 'theta1', 'theta2', 'theta3']
-    spamwriter.writerow(headers)
+    # headers = ['x', 'y', 'z', 'theta1', 'theta2', 'theta3']
+    # spamwriter.writerow(headers)
     for theta1 in np.arange(theta_low, theta_high, step):
         print theta1
         for theta2 in np.arange(theta_low, theta_high, step):
