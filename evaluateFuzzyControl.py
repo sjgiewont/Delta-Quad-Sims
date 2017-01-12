@@ -1,4 +1,4 @@
-from anfis import *
+from myAnfis import anfis
 import membership #import membershipfunction, mfDerivs
 import numpy
 import timeit
@@ -10,7 +10,7 @@ with open('fuzzycontrol.pkl', 'rb') as f:
 
 
 # var = numpy.array([[3, 4], [3, 4]])
-var = numpy.array([[-7.0,-12.7,-138.1]])
+var = numpy.array([[0.9,-1,-135.1]])
 
 print "input", var
 

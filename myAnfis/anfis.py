@@ -192,9 +192,15 @@ class ANFIS:
 def forwardHalfPass(ANFISObj, Xs):
     layerFour = np.empty(0,)
     wSum = []
+    count = 0
 
     for pattern in range(len(Xs[:,0])):
-        print "Forward Pass: ", pattern
+        if count == 100:
+            count = 0
+            print "Forward Pass: ", pattern
+
+        count += 1
+
         #layer one
         layerOne = ANFISObj.memClass.evaluateMF(Xs[pattern,:])
 
