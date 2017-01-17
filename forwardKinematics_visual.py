@@ -145,8 +145,8 @@ ball = sphere(pos=(base_p2), radius=10, material=materials.rough)
 ball = sphere(pos=(base_p3), radius=10, material=materials.rough)
 
 # the angle each of the arms are oriented. 180 deg is horizontal
-theta_1 = 240
-theta_2 = 240
+theta_1 = 180
+theta_2 = 180
 theta_3 = 240
 
 # the first knee, in the universal y,z plane, pointing towards 12 o'clock

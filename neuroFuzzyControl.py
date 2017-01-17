@@ -5,11 +5,14 @@ import time
 import cPickle as pickle
 
 # ts = numpy.loadtxt("trainingSet.txt", usecols=[1,2,3])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
-ts = numpy.loadtxt("fuzzy_train_table.csv", delimiter=',', usecols=[0,1,2,3,4,5])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
+ts = numpy.loadtxt("lookup_150_211_half_124_125.csv", delimiter=',', usecols=[0,1,2,3,4,5,6,7,8])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
 
-X = ts[:,0:3]
-Y = ts[:,3:7]
-# Y = ts[:,3]
+# using coord input, theta output
+# X = ts[:,0:3]
+# Y = ts[:,3:7]
+
+X = ts[:,0:2]
+Y = ts[:,6:9]
 
 print X
 print Y
@@ -29,9 +32,13 @@ print Y
 #             [['gaussmf',{'mean':-5.,'sigma':2.}],['gaussmf',{'mean':0.,'sigma':2.}],['gaussmf',{'mean':5.,'sigma':2.}],['gaussmf',{'mean':-10.5,'sigma':5.}]],
 #             [['gaussmf', {'mean': -100., 'sigma': 10.}], ['gaussmf', {'mean': -120., 'sigma': 10.}], ['gaussmf',{'mean': -130.,'sigma': 10.}], ['gaussmf', {'mean': -94, 'sigma': 5}]]]
 
-mf = [[['gaussmf',{'mean':-20.,'sigma':10.}],['gaussmf',{'mean':0.,'sigma':10.}],['gaussmf',{'mean':20.,'sigma':10.}]],
-            [['gaussmf',{'mean':-20.,'sigma':10.}],['gaussmf',{'mean':0.,'sigma':10.}],['gaussmf',{'mean':20.,'sigma':10.}]],
-            [['gaussmf', {'mean': -100., 'sigma': 5.}], ['gaussmf', {'mean': -110., 'sigma': 5.}], ['gaussmf',{'mean': -120.,'sigma': 5.}]]]
+# mf = [[['gaussmf',{'mean':-20.,'sigma':10.}],['gaussmf',{'mean':0.,'sigma':10.}],['gaussmf',{'mean':20.,'sigma':10.}]],
+#             [['gaussmf',{'mean':-20.,'sigma':10.}],['gaussmf',{'mean':0.,'sigma':10.}],['gaussmf',{'mean':20.,'sigma':10.}]],
+#             [['gaussmf', {'mean': -100., 'sigma': 5.}], ['gaussmf', {'mean': -110., 'sigma': 5.}], ['gaussmf',{'mean': -120.,'sigma': 5.}]]]
+
+mf = [[['gaussmf',{'mean':-40.,'sigma':10.}],['gaussmf',{'mean':-20.,'sigma':10.}],['gaussmf',{'mean':10.,'sigma':10.}],['gaussmf',{'mean':30.,'sigma':10.}]],
+            [['gaussmf',{'mean':-41.,'sigma':10.}],['gaussmf',{'mean':-21.,'sigma':10.}],['gaussmf',{'mean':12.,'sigma':10.}],['gaussmf',{'mean':31,'sigma':10.}]]]
+
 
 print "Starting membership function"
 mfc = membership.membershipfunction.MemFuncs(mf)
@@ -42,9 +49,9 @@ anf = anfis.ANFIS(X, Y, mfc)
 t = time.time()
 
 print "Finished ANFIS, starting training Hybrid"
-anf.trainHybridJangOffLine(epochs=5)
+anf.trainHybridJangOffLine(epochs=10)
 
-with open('fuzzycontrol.pkl', 'wb') as f:
+with open('fuzzycontrol_normal_3.pkl', 'wb') as f:
     pickle.dump(anf, f, pickle.HIGHEST_PROTOCOL)
 
 print time.time() - t

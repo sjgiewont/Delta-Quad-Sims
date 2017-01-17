@@ -35,8 +35,8 @@ def forwardKinematics(theta_1, theta_2, theta_3):
     # length from center of platform (foot) to axis of rotation
     foot_radius = 25
     # length of arm and leg
-    arm = 100
-    leg = 200
+    arm = 110
+    leg = 266.7
 
     # define the position where the arms meet the base
     base_p1 = np.array([base_radius * np.cos(np.deg2rad(90)), base_radius * np.sin(np.deg2rad(90)), 0])
@@ -86,22 +86,27 @@ def forwardKinematics(theta_1, theta_2, theta_3):
     vy = vy_circle_intersect / vmag
     vz = vz_circle_intersect / vmag
 
-    foot_pt_x = round((circle_intersect_2[0] + vx * (height_intersect_2_platform)), 1)
-    foot_pt_y = round((circle_intersect_2[1] + vy * (height_intersect_2_platform)), 1)
-    foot_pt_z = round((circle_intersect_2[2] + vz * (height_intersect_2_platform)), 1)
+    # foot_pt_x = round((circle_intersect_2[0] + vx * (height_intersect_2_platform)), 1)
+    # foot_pt_y = round((circle_intersect_2[1] + vy * (height_intersect_2_platform)), 1)
+    # foot_pt_z = round((circle_intersect_2[2] + vz * (height_intersect_2_platform)), 1)
+
+    foot_pt_x = circle_intersect_2[0] + vx * (height_intersect_2_platform)
+    foot_pt_y = circle_intersect_2[1] + vy * (height_intersect_2_platform)
+    foot_pt_z = circle_intersect_2[2] + vz * (height_intersect_2_platform)
 
     # foot_pt = np.array([foot_pt_x, foot_pt_y, foot_pt_z, theta_1, theta_2, theta_3])
-
     foot_pt = [foot_pt_x, foot_pt_y, foot_pt_z, theta_1, theta_2, theta_3]
+
+    # foot_pt = [foot_pt_x, foot_pt_y, foot_pt_z, theta_1, theta_2, theta_3, vx, vy, vz]
 
     return foot_pt
 
 
 theta_low = 140
-theta_high = 222
-step = 2
+theta_high = 220.25
+step = 0.25
 
-with open('fuzzy_train_table.csv', 'wb') as csvfile:
+with open('table_140_220_qrtr.csv', 'wb') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     # headers = ['x', 'y', 'z', 'theta1', 'theta2', 'theta3']
     # spamwriter.writerow(headers)
@@ -110,6 +115,8 @@ with open('fuzzy_train_table.csv', 'wb') as csvfile:
         for theta2 in np.arange(theta_low, theta_high, step):
             for theta3 in np.arange(theta_low, theta_high, step):
                 foot_pos = forwardKinematics(theta1, theta2, theta3)
+                # if foot_pos[2] == -124.4:
+                # if foot_pos[2] <= -175 and foot_pos[2] >= -170:
                 spamwriter.writerow(foot_pos)
 
 # theta_low = 180
