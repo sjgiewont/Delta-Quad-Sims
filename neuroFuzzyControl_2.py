@@ -5,13 +5,13 @@ import time
 import cPickle as pickle
 
 start = -170
-step = 5
+step = 1
 
 end_range = start - step
 
-while -185 < end_range:
+while -300 < end_range:
 
-    filename = "test_140_220_qrtr_%d_%d.csv" % (abs(start), abs(end_range))
+    filename = "test_140_220_half_%d_%d.csv" % (abs(start), abs(end_range))
 
     # ts = numpy.loadtxt("trainingSet.txt", usecols=[1,2,3])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
     ts = numpy.loadtxt(filename, delimiter=',', usecols=[0,1,2,3,4,5])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
@@ -20,8 +20,17 @@ while -185 < end_range:
     X = ts[:,0:3]
     Y = ts[:,3:7]
 
-    # print X
-    # print Y
+    x = ts[:,0]
+    y = ts[:,1]
+
+    x_step = (numpy.max(x) - numpy.min(x)) / 4
+    x_start = numpy.min(x) + (x_step/2)
+    x_sigma = x_step / 2
+
+    y_step = (numpy.max(y) - numpy.min(y)) / 4
+    y_start = numpy.min(y) + (y_step/2)
+    y_sigma = y_step / 2
+
 
 
     # mf = [[['gaussmf',{'mean':-11.,'sigma':5.}],['gaussmf',{'mean':-8.,'sigma':5.}],['gaussmf',{'mean':-14.,'sigma':20.}],['gaussmf',{'mean':-7.,'sigma':7.}]],
@@ -43,8 +52,8 @@ while -185 < end_range:
     # mf = [[['gaussmf',{'mean':-40.,'sigma':10.}],['gaussmf',{'mean':-20.,'sigma':10.}],['gaussmf',{'mean':10.,'sigma':10.}],['gaussmf',{'mean':30.,'sigma':10.}]],
     #             [['gaussmf',{'mean':-41.,'sigma':10.}],['gaussmf',{'mean':-21.,'sigma':10.}],['gaussmf',{'mean':12.,'sigma':10.}],['gaussmf',{'mean':31,'sigma':10.}]]]
 
-    mf = [[['gaussmf',{'mean':-40.,'sigma':10.}],['gaussmf',{'mean':-20.,'sigma':10.}],['gaussmf',{'mean':10.,'sigma':10}],['gaussmf',{'mean':30.,'sigma':10.}]],
-                [['gaussmf',{'mean':-41.,'sigma':10.}],['gaussmf',{'mean':-21.,'sigma':10.}],['gaussmf',{'mean':12.,'sigma':10.}],['gaussmf',{'mean':31,'sigma':10.}]],
+    mf = [[['gaussmf',{'mean':x_start,'sigma':x_sigma}],['gaussmf',{'mean':x_start + x_step,'sigma':x_sigma}],['gaussmf',{'mean':x_start + 2 * x_step,'sigma':x_sigma}],['gaussmf',{'mean':x_start + 3 * x_step,'sigma':x_sigma}]],
+                [['gaussmf',{'mean':y_start,'sigma':y_sigma}],['gaussmf',{'mean':y_start + y_step,'sigma':y_sigma}],['gaussmf',{'mean':y_start + 2 * y_step,'sigma':y_sigma}],['gaussmf',{'mean':y_start + 3 * y_step,'sigma':y_sigma}]],
                 [['gaussmf', {'mean': end_range, 'sigma': 1.}], ['gaussmf', {'mean': end_range + 2., 'sigma': 1.}], ['gaussmf',{'mean': end_range + 3.,'sigma': 1.}], ['gaussmf', {'mean': start, 'sigma': 1}]]]
 
 
@@ -57,7 +66,7 @@ while -185 < end_range:
     t = time.time()
 
     print "Finished ANFIS, starting training Hybrid"
-    anf.trainHybridJangOffLine(epochs=10)
+    anf.trainHybridJangOffLine(epochs=5)
 
     pickle_filename = "fuzzycontrol_%d_%d.pkl" % (abs(start), abs(end_range))
 

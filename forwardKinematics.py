@@ -104,9 +104,9 @@ def forwardKinematics(theta_1, theta_2, theta_3):
 
 theta_low = 140
 theta_high = 220.25
-step = 0.25
+step = 0.5
 
-with open('table_140_220_qrtr.csv', 'wb') as csvfile:
+with open('table_140_220_half.csv', 'wb') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     # headers = ['x', 'y', 'z', 'theta1', 'theta2', 'theta3']
     # spamwriter.writerow(headers)
