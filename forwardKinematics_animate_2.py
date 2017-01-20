@@ -169,7 +169,7 @@ def inverseKinematics(x, y, z):
         theta1 = 180
 
     print theta1, theta2, theta3
-    return theta1, theta2, theta3
+    return np.array([theta1, theta2, theta3])
 
 
 
@@ -408,7 +408,7 @@ def setupAnimation():
     scene.center
     scene.autocenter
 
-def displayPosition(theta_1, theta_2, theta_3):
+def displayPosition(thetas):
     global arm_link_1
     global arm_link_2
     global arm_link_3
@@ -423,6 +423,10 @@ def displayPosition(theta_1, theta_2, theta_3):
     # length of arm and leg
     arm = 110.0
     leg = 266.7
+
+    theta_1 = thetas[0]
+    theta_2 = thetas[1]
+    theta_3 = thetas[2]
 
     # define the position where the arms meet the base
     base_p1 = np.array([base_radius * cos(np.deg2rad(90)), base_radius * sin(np.deg2rad(90)), 0])
@@ -522,6 +526,6 @@ while 1:
     angle += 0.1
     x = 100*np.sin(angle)
     y = 100 * np.sin(angle)
-    theta1, theta2, theta3 = inverseKinematics(0, y, -200)
-    displayPosition(theta1, theta2, theta3)
-    time.sleep(0.1)
+    thetas = inverseKinematics(0, y, -200)
+    displayPosition(thetas)
+    time.sleep(0.01)

@@ -165,7 +165,7 @@ def inverseKinematics(x, y, z):
         theta1 = 180
 
     print theta1, theta2, theta3
-
+    return np.array([theta1, theta2, theta3])
 
 
 
