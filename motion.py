@@ -70,7 +70,7 @@ def step_2(curr_pos, new_pos, step_height):
     stop = timeit.default_timer()
     print "The Time:", stop - start
 
-    main.
+    main.add_leg1()
     print main.leg1_q.get()
 
     # map(main.leg1_q.put, x)
@@ -95,4 +95,42 @@ def step_2(curr_pos, new_pos, step_height):
 
     return new_pos
 
+step_length = 10
+step_height = 50
+step_angle = 0
+leg_height = -100
+step_precision = 100
+
+# define the percentage of time it takes to lift the leg
+step_up_time = float(0.25)
+
+# define the two end points based on the step length and the angle of the step
+pos_0 = np.array([-step_length*np.sin(np.deg2rad(step_angle)), -step_length*np.cos(np.deg2rad(step_angle)), leg_height])
+pos_1 = np.array([step_length*np.sin(np.deg2rad(step_angle)), step_length*np.cos(np.deg2rad(step_angle)), leg_height])
+
+# create increments of time
+t = np.linspace(0, 1, step_precision)
+
+# the rate of change in relation to the step up time
+m_step = float(1) / step_up_time
+
+# the rate of change and starting point of the dragging motion wrt to the step up time
+m_drag = float(1) / (1 - step_up_time)
+b_drag = -(m_drag * step_up_time)
+
+# define a matrix of Z axis parabolic conditions and its arguments, need to solve for constants of this relation
+z_matrix = np.matrix([[0, 0, 1], [step_up_time**2, step_up_time, 1], [(step_up_time/2)**2, (step_up_time/2), 1]])
+z_conditions = np.matrix([[pos_0[2]], [pos_1[2]], [leg_height + step_height]])
+z_constants = z_matrix.I * z_conditions
+
+# determine all the values defined by the piecewise functions
+piecewise_x = np.piecewise(t, [(t >= 0) & (t <= step_up_time), t > step_up_time], [lambda t: (1 - m_step*t)*pos_0[0] + m_step*t*pos_1[0], lambda t: (1 - (m_drag*t + b_drag))*pos_1[0] + (m_drag*t + b_drag)*pos_0[0]])
+piecewise_y = np.piecewise(t, [(t >= 0) & (t <= step_up_time), t > step_up_time], [lambda t: (1 - m_step*t)*pos_0[1] + m_step*t*pos_1[1], lambda t: (1 - (m_drag*t + b_drag))*pos_1[1] + (m_drag*t + b_drag)*pos_0[1]])
+piecewise_z = np.piecewise(t, [(t >= 0) & (t <= step_up_time), (t > step_up_time)], [lambda t: z_constants[0,0]*t**2 + z_constants[1,0]*t + z_constants[2,0], lambda t: leg_height])
+
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(piecewise_x, piecewise_y, piecewise_z)
+plt.show()
 
