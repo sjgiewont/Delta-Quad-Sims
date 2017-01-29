@@ -24,11 +24,11 @@ def piecewiseMotion(degrees, precision):
         piecewise.append([piecewise_x[i], piecewise_y[i], piecewise_z[i]])
 
     return piecewise
-
-    # Plot the Piecewise Functions
-    # plt.plot(t, spline_x)
+    #
+    # # Plot the Piecewise Functions
+    # plt.plot(t, piecewise_x)
     # plt.show()
-    # plt.plot(t, spline_y)
+    # plt.plot(t, piecewise_y)
     # plt.show()
-    # plt.plot(t, spline_z)
+    # plt.plot(t, piecewise_z)
     # plt.show()
