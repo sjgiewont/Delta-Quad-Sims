@@ -5,20 +5,21 @@ import time
 import cPickle as pickle
 
 # ts = numpy.loadtxt("trainingSet.txt", usecols=[1,2,3])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
-ts = numpy.loadtxt("lookup_140_220_half.csv", delimiter=',', usecols=[0,1,2,3,4,5,6,7,8])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
+ts = numpy.loadtxt("table_140_220_two.csv", delimiter=',', usecols=[0,1,2,3,4,5,6,7,8])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
 
 # using coord input, theta output
 # X = ts[:,0:3]
 # Y = ts[:,3:7]
 
-X = ts[:,0:2]
-Y = ts[:,6:9]
+X = ts[:,0:3]
+Y = ts[:,6]
 
 print X
 print Y
 
 x = ts[:, 0]
 y = ts[:, 1]
+z = ts[:, 2]
 
 x_step = (numpy.max(x) - numpy.min(x)) / 4
 x_start = numpy.min(x) + (x_step / 2)
@@ -27,6 +28,10 @@ x_sigma = x_step / 2
 y_step = (numpy.max(y) - numpy.min(y)) / 4
 y_start = numpy.min(y) + (y_step / 2)
 y_sigma = y_step / 2
+
+z_step = (numpy.max(z) - numpy.min(z)) / 4
+z_start = numpy.min(z) + (z_step / 2)
+z_sigma = z_step / 2
 
 # X = numpy.matrix('1 1 1; 2 2 2; 3 3 3')
 # Y = numpy.array([6, 3, 1])
@@ -55,7 +60,11 @@ mf = [[['gaussmf', {'mean': x_start, 'sigma': x_sigma}], ['gaussmf', {'mean': x_
        ['gaussmf', {'mean': x_start + 3 * x_step, 'sigma': x_sigma}]],
       [['gaussmf', {'mean': y_start, 'sigma': y_sigma}], ['gaussmf', {'mean': y_start + y_step, 'sigma': y_sigma}],
        ['gaussmf', {'mean': y_start + 2 * y_step, 'sigma': y_sigma}],
-       ['gaussmf', {'mean': y_start + 3 * y_step, 'sigma': y_sigma}]]]
+       ['gaussmf', {'mean': y_start + 3 * y_step, 'sigma': y_sigma}]],
+      [['gaussmf', {'mean': z_start, 'sigma': z_sigma}], ['gaussmf', {'mean': z_start + z_step, 'sigma': z_sigma}],
+       ['gaussmf', {'mean': z_start + 2 * z_step, 'sigma': z_sigma}],
+       ['gaussmf', {'mean': z_start + 3 * z_step, 'sigma': z_sigma}]]]
+
 
 print "Starting membership function"
 mfc = membership.membershipfunction.MemFuncs(mf)
@@ -66,9 +75,9 @@ anf = anfis.ANFIS(X, Y, mfc)
 t = time.time()
 
 print "Finished ANFIS, starting training Hybrid"
-anf.trainHybridJangOffLine(epochs=10)
+anf.trainHybridJangOffLine(epochs=5)
 
-with open('fuzzycontrol_normal_4.pkl', 'wb') as f:
+with open('fuzzycontrol_normal_Nx_1.pkl', 'wb') as f:
     pickle.dump(anf, f, pickle.HIGHEST_PROTOCOL)
 
 print time.time() - t

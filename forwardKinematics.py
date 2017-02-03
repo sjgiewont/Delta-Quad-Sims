@@ -95,18 +95,18 @@ def forwardKinematics(theta_1, theta_2, theta_3):
     foot_pt_z = circle_intersect_2[2] + vz * (height_intersect_2_platform)
 
     # foot_pt = np.array([foot_pt_x, foot_pt_y, foot_pt_z, theta_1, theta_2, theta_3])
-    foot_pt = [foot_pt_x, foot_pt_y, foot_pt_z, theta_1, theta_2, theta_3]
+    # foot_pt = [foot_pt_x, foot_pt_y, foot_pt_z, theta_1, theta_2, theta_3]
 
-    # foot_pt = [foot_pt_x, foot_pt_y, foot_pt_z, theta_1, theta_2, theta_3, vx, vy, vz]
+    foot_pt = [foot_pt_x, foot_pt_y, foot_pt_z, theta_1, theta_2, theta_3, vx, vy, vz]
 
     return foot_pt
 
 
 theta_low = 140
-theta_high = 220.25
-step = 0.5
+theta_high = 222
+step = 2
 
-with open('table_140_220_half.csv', 'wb') as csvfile:
+with open('table_140_220_two.csv', 'wb') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     # headers = ['x', 'y', 'z', 'theta1', 'theta2', 'theta3']
     # spamwriter.writerow(headers)
