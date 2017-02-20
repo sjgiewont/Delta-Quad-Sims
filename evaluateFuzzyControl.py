@@ -4,12 +4,12 @@ import numpy
 import timeit
 import cPickle as pickle
 
-with open('fuzzycontrol_170_175.pkl', 'rb') as f:
+with open('fuzzy_test_gauss.pkl', 'rb') as f:
     anf = pickle.load(f)
 
 # var = numpy.array([[0.9,-1,-135.1]])
-input_val = numpy.array([[2.8421709430404007e-14,-7.1054273576010019e-15,-171.89997335979379]])
-output_val = numpy.array([150.0,150.0,150.0])
+input_val = numpy.array([[0, 0, -207.70890486488082]])
+output_val = numpy.array([175,175,175])
 
 print "input", input_val
 

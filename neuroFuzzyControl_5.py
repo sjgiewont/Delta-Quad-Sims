@@ -5,14 +5,14 @@ import time
 import cPickle as pickle
 
 # ts = numpy.loadtxt("trainingSet.txt", usecols=[1,2,3])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
-ts = numpy.loadtxt("table_140_220_two.csv", delimiter=',', usecols=[0,1,2,3,4,5,6,7,8])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
+ts = numpy.loadtxt("table_175_185.csv", delimiter=',', usecols=[0,1,2,3,4,5])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
 
 # using coord input, theta output
 # X = ts[:,0:3]
 # Y = ts[:,3:7]
 
 X = ts[:,0:3]
-Y = ts[:,8]
+Y = ts[:,3:6]
 
 print X
 print Y
@@ -55,15 +55,37 @@ z_sigma = z_step / 2
 # mf = [[['gaussmf',{'mean':-40.,'sigma':10.}],['gaussmf',{'mean':-20.,'sigma':10.}],['gaussmf',{'mean':10.,'sigma':10.}],['gaussmf',{'mean':30.,'sigma':10.}]],
 #             [['gaussmf',{'mean':-41.,'sigma':10.}],['gaussmf',{'mean':-21.,'sigma':10.}],['gaussmf',{'mean':12.,'sigma':10.}],['gaussmf',{'mean':31,'sigma':10.}]]]
 
-mf = [[['gaussmf', {'mean': x_start, 'sigma': x_sigma}], ['gaussmf', {'mean': x_start + x_step, 'sigma': x_sigma}],
-       ['gaussmf', {'mean': x_start + 2 * x_step, 'sigma': x_sigma}],
-       ['gaussmf', {'mean': x_start + 3 * x_step, 'sigma': x_sigma}]],
-      [['gaussmf', {'mean': y_start, 'sigma': y_sigma}], ['gaussmf', {'mean': y_start + y_step, 'sigma': y_sigma}],
-       ['gaussmf', {'mean': y_start + 2 * y_step, 'sigma': y_sigma}],
-       ['gaussmf', {'mean': y_start + 3 * y_step, 'sigma': y_sigma}]],
-      [['gaussmf', {'mean': z_start, 'sigma': z_sigma}], ['gaussmf', {'mean': z_start + z_step, 'sigma': z_sigma}],
-       ['gaussmf', {'mean': z_start + 2 * z_step, 'sigma': z_sigma}],
-       ['gaussmf', {'mean': z_start + 3 * z_step, 'sigma': z_sigma}]]]
+# mf = [[['gaussmf', {'mean': x_start, 'sigma': x_sigma}], ['gaussmf', {'mean': x_start + x_step, 'sigma': x_sigma}],
+#        ['gaussmf', {'mean': x_start + 2 * x_step, 'sigma': x_sigma}],
+#        ['gaussmf', {'mean': x_start + 3 * x_step, 'sigma': x_sigma}]],
+#       [['gaussmf', {'mean': y_start, 'sigma': y_sigma}], ['gaussmf', {'mean': y_start + y_step, 'sigma': y_sigma}],
+#        ['gaussmf', {'mean': y_start + 2 * y_step, 'sigma': y_sigma}],
+#        ['gaussmf', {'mean': y_start + 3 * y_step, 'sigma': y_sigma}]],
+#       [['gaussmf', {'mean': z_start, 'sigma': z_sigma}], ['gaussmf', {'mean': z_start + z_step, 'sigma': z_sigma}],
+#        ['gaussmf', {'mean': z_start + 2 * z_step, 'sigma': z_sigma}],
+#        ['gaussmf', {'mean': z_start + 3 * z_step, 'sigma': z_sigma}]]]
+
+# mf = [[['sigmf', {'b': x_start, 'c': x_sigma}], ['sigmf', {'b': x_start + x_step, 'c': x_sigma}],
+#        ['sigmf', {'b': x_start + 2 * x_step, 'c': x_sigma}],
+#        ['sigmf', {'b': x_start + 3 * x_step, 'c': x_sigma}]],
+#       [['sigmf', {'b': y_start, 'c': y_sigma}], ['sigmf', {'b': y_start + y_step, 'c': y_sigma}],
+#        ['sigmf', {'b': y_start + 2 * y_step, 'c': y_sigma}],
+#        ['sigmf', {'b': y_start + 3 * y_step, 'c': y_sigma}]],
+#       [['sigmf', {'b': z_start, 'c': z_sigma}], ['sigmf', {'b': z_start + z_step, 'c': z_sigma}],
+#        ['sigmf', {'b': z_start + 2 * z_step, 'c': z_sigma}],
+#        ['sigmf', {'b': z_start + 3 * z_step, 'c': z_sigma}]]]
+
+# mf = [[['sigmf', {'b': 0, 'c': 0.25}], ['sigmf', {'b': 0, 'c': -0.25}], ['sigmf', {'b': 0, 'c': 0.5}], ['sigmf', {'b': 0, 'c': -0.5}]],
+#       [['sigmf', {'b': 0, 'c': 0.25}], ['sigmf', {'b': 0, 'c': -0.25}], ['sigmf', {'b': 0, 'c': 0.5}], ['sigmf', {'b': 0, 'c': -0.5}]],
+#       [['sigmf', {'b': 0, 'c': 0.25}], ['sigmf', {'b': 0, 'c': -0.25}], ['sigmf', {'b': 0, 'c': 0.5}], ['sigmf', {'b': 0, 'c': -0.5}]]]
+
+mf = [[['sigmf', {'b': 0, 'c': 0.1}], ['sigmf', {'b': 0, 'c': -0.1}]],
+      [['sigmf', {'b': 0, 'c': 0.1}], ['sigmf', {'b': 0, 'c': -0.1}]],
+      [['sigmf', {'b': 0, 'c': 0.1}], ['sigmf', {'b': 0, 'c': -0.1}]]]
+
+# mf = [[['sigmf', {'b': -0.2, 'c': 0.1}], ['sigmf', {'b': -0.1, 'c': 0.1}], ['sigmf', {'b': 0.1, 'c': 0.1}], ['sigmf', {'b': 0.2, 'c': 0.1}]],
+#       [['sigmf', {'b': -0.2, 'c': 0.1}], ['sigmf', {'b': -0.1, 'c': 0.1}], ['sigmf', {'b': 0.1, 'c': 0.1}], ['sigmf', {'b': 0.2, 'c': 0.1}]],
+#       [['sigmf', {'b': -0.2, 'c': 0.1}], ['sigmf', {'b': -0.1, 'c': 0.1}], ['sigmf', {'b': 0.1, 'c': 0.1}], ['sigmf', {'b': 0.2, 'c': 0.1}]]]
 
 
 print "Starting membership function"
@@ -72,18 +94,20 @@ mfc = membership.membershipfunction.MemFuncs(mf)
 print "Finished membership function, starting ANFIS"
 anf = anfis.ANFIS(X, Y, mfc)
 
+anf.plotMF(x, 0)
+
 t = time.time()
 
 print "Finished ANFIS, starting training Hybrid"
-anf.trainHybridJangOffLine(epochs=5)
+anf.trainHybridJangOffLine(epochs=10)
 
-with open('fuzzycontrol_normal_Nz_1.pkl', 'wb') as f:
+with open('fuzzy_test_sigmf_175_185.pkl', 'wb') as f:
     pickle.dump(anf, f, pickle.HIGHEST_PROTOCOL)
 
 print time.time() - t
 
 # var = numpy.array([[3, 4], [3, 4]])
-var = numpy.array([[1, 1, 1]])
+var = numpy.array([[0,0,-207]])
 
 print "input", var
 
@@ -97,3 +121,5 @@ print "input", var
 # print the predicted value based on the trained set
 print "The answer is", anfis.predict(anf, var)
 
+anf.plotErrors()
+anf.plotResults()
