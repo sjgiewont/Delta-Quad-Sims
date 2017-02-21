@@ -49,22 +49,22 @@ x_mu_1 = x_start
 x_mu_2 = x_start + x_step
 x_mu_3 = x_start + 2 * x_step
 x_mu_4 = x_start + 3 * x_step
-x_width_1 = 2*x_sigma
-x_slope_1 = 2
+x_width_1 = 10*x_sigma
+x_slope_1 = 0.5
 
 y_mu_1 = y_start
 y_mu_2 = y_start + y_step
 y_mu_3 = y_start + 2 * y_step
 y_mu_4 = y_start + 3 * y_step
-y_width_1 = 2*y_sigma
-y_slope_1 = 2
+y_width_1 = 10*y_sigma
+y_slope_1 = 0.5
 
 z_mu_1 = z_start
 z_mu_2 = z_start + z_step
 z_mu_3 = z_start + 2 * z_step
 z_mu_4 = z_start + 3 * z_step
-z_width_1 = 2*z_sigma
-z_slope_1 = 2
+z_width_1 = 10*z_sigma
+z_slope_1 = 0.5
 
 mf = [[['gbellmf', {'a': x_width_1, 'b': x_slope_1, 'c': x_mu_1}],
        ['gbellmf', {'a': x_width_1, 'b': x_slope_1, 'c': x_mu_2}],
