@@ -8,6 +8,7 @@ import itertools
 import numpy as np
 from membership import mfDerivs
 import copy
+import cPickle as pickle
 
 class ANFIS:
     """Class to implement an Adaptive Network Fuzzy Inference System: ANFIS"
@@ -136,6 +137,9 @@ class ANFIS:
                         self.memFuncs[varsWithMemFuncs][MFs][1][paramList[param]] = self.memFuncs[varsWithMemFuncs][MFs][1][paramList[param]] + dAlpha[varsWithMemFuncs][MFs][param]
             epoch = epoch + 1
             print "The Current Epoch is: ", epoch
+            pkl_file_name = "fuzzy_test_%d.pkl" % epoch
+            with open(pkl_file_name, 'wb') as f:
+                pickle.dump(self, f, pickle.HIGHEST_PROTOCOL)
 
 
         self.fittedValues = predict(self,self.X)
