@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 
 # ts = numpy.loadtxt("trainingSet.txt", usecols=[1,2,3])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
-ts = np.loadtxt("table_140_220_one.csv", delimiter=',', usecols=[0,1,2,3,4,5])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
+ts = np.loadtxt("table_175_185.csv", delimiter=',', usecols=[0,1,2,3,4,5])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
 
 # using coord input, theta output
 # X = ts[:,0:3]

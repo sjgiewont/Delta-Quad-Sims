@@ -5,7 +5,7 @@ import time
 import cPickle as pickle
 
 # ts = numpy.loadtxt("trainingSet.txt", usecols=[1,2,3])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
-ts = numpy.loadtxt("table_175_185.csv", delimiter=',', usecols=[0,1,2,3,4,5])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
+ts = numpy.loadtxt("table_140_220_two.csv", delimiter=',', usecols=[0,1,2,3,4,5])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
 
 # using coord input, theta output
 # X = ts[:,0:3]
@@ -79,9 +79,30 @@ z_sigma = z_step / 2
 #       [['sigmf', {'b': 0, 'c': 0.25}], ['sigmf', {'b': 0, 'c': -0.25}], ['sigmf', {'b': 0, 'c': 0.5}], ['sigmf', {'b': 0, 'c': -0.5}]],
 #       [['sigmf', {'b': 0, 'c': 0.25}], ['sigmf', {'b': 0, 'c': -0.25}], ['sigmf', {'b': 0, 'c': 0.5}], ['sigmf', {'b': 0, 'c': -0.5}]]]
 
-mf = [[['sigmf', {'b': 0, 'c': 0.1}], ['sigmf', {'b': 0, 'c': -0.1}]],
-      [['sigmf', {'b': 0, 'c': 0.1}], ['sigmf', {'b': 0, 'c': -0.1}]],
-      [['sigmf', {'b': 0, 'c': 0.1}], ['sigmf', {'b': 0, 'c': -0.1}]]]
+x_mu_1 = x_start
+x_mu_2 = x_start + x_step
+x_mu_3 = x_start + 2 * x_step
+x_mu_4 = x_start + 3 * x_step
+x_width_1 = 10*x_sigma
+x_slope_1 = 0.5
+
+y_mu_1 = y_start
+y_mu_2 = y_start + y_step
+y_mu_3 = y_start + 2 * y_step
+y_mu_4 = y_start + 3 * y_step
+y_width_1 = 10*y_sigma
+y_slope_1 = 0.5
+
+z_mu_1 = z_start
+z_mu_2 = z_start + z_step
+z_mu_3 = z_start + 2 * z_step
+z_mu_4 = z_start + 3 * z_step
+z_width_1 = 10*z_sigma
+z_slope_1 = 0.5
+
+mf = [[['sigmf', {'b': x_mu_1, 'c': x_slope_1}], ['sigmf', {'b': x_mu_2, 'c': x_slope_1}], ['sigmf', {'b': x_mu_3, 'c': x_slope_1}], ['sigmf', {'b': x_mu_4, 'c': x_slope_1}]],
+      [['sigmf', {'b': y_mu_1, 'c': y_slope_1}], ['sigmf', {'b': y_mu_2, 'c':y_slope_1}], ['sigmf', {'b': y_mu_3, 'c': y_slope_1}], ['sigmf', {'b': y_mu_4, 'c': y_slope_1}]],
+      [['sigmf', {'b': z_mu_1, 'c': z_slope_1}], ['sigmf', {'b': z_mu_2, 'c':z_slope_1}], ['sigmf', {'b': z_mu_3, 'c': z_slope_1}], ['sigmf', {'b': z_mu_4, 'c': z_slope_1}]]]
 
 # mf = [[['sigmf', {'b': -0.2, 'c': 0.1}], ['sigmf', {'b': -0.1, 'c': 0.1}], ['sigmf', {'b': 0.1, 'c': 0.1}], ['sigmf', {'b': 0.2, 'c': 0.1}]],
 #       [['sigmf', {'b': -0.2, 'c': 0.1}], ['sigmf', {'b': -0.1, 'c': 0.1}], ['sigmf', {'b': 0.1, 'c': 0.1}], ['sigmf', {'b': 0.2, 'c': 0.1}]],

@@ -9,7 +9,7 @@ test_xyz = numpy.loadtxt("test_table_176_184.csv", delimiter=',', usecols=[0,1,2
 test_angles = numpy.loadtxt("test_table_176_184.csv", delimiter=',', usecols=[3,4,5])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
 
 
-with open('fuzzy_test_bell.pkl', 'rb') as f:
+with open('fuzzy_test_gauss.pkl', 'rb') as f:
     anf = pickle.load(f)
 
 anf.plotErrors()

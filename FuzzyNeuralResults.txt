@@ -1,0 +1,287 @@
+175 to 185, step 1
+------------------------------------------------
+gauss 2 epochs = Total Error:  18.3926434774
+gauss 5 epochs = Total Error:  18.3926434774
+
+sigmf 5 epochs, [['sigmf', {'b': 0, 'c': 0.25}] = Total Error:  8.87826990903, 
+
+sigmf 5 epochs [[['sigmf', {'b': 0, 'c': 0.25}], ['sigmf', {'b': 0, 'c': -0.25}]] ===> Total Error:  3.73940667177
+
+
+mf = [[['sigmf', {'b': 0, 'c': 0.25}], ['sigmf', {'b': 0, 'c': -0.25}], ['sigmf', {'b': 0, 'c': 0.5}], ['sigmf', {'b': 0, 'c': -0.5}]], ==> Total Error:  57.5859726171
+
+mf = [[['sigmf', {'b': 0, 'c': 0.5}], ['sigmf', {'b': 0, 'c': -0.5}]], ==>  Total Error:  4.01484375222
+
+mf = [[['sigmf', {'b': 0, 'c': 0.1}], ['sigmf', {'b': 0, 'c': -0.1}]], ==> Total Error:  3.57863812992
+
+mf = [[['sigmf', {'b': 0, 'c': 0.01}], ['sigmf', {'b': 0, 'c': -0.01}]], ==> 
+
+mf = [[['sigmf', {'b': 0, 'c': 0.05}], ['sigmf', {'b': 0, 'c': -0.05}]] ==> Total Error:  6.12356264631
+
+mf = [[['sigmf', {'b': -0.2, 'c': 0.1}], ['sigmf', {'b': -0.1, 'c': 0.1}], ['sigmf', {'b': 0.1, 'c': 0.1}], ['sigmf', {'b': 0.2, 'c': 0.1}]] ==> Total Error:  2901.61500453
+
+
+--------------------------------------------------------------
+fuzzy_test_sigmf_160_200_1
+Total Error:  146.664848179
+Average Error:  0.00447585596249
+
+fuzzy_test_sigmf_175_185
+epoch = 5
+Total Error:  3.57863812992
+Average Error:  0.000109211368711
+
+fuzzy_test_sigmf_175_185
+epoch = 10
+Total Error:  3.60176403201
+Average Error:  0.000109917115235
+
+fuzzy_test_sigmf_175_185
+epoch = 20
+Total Error:  3.6744930317
+Average Error:  0.000112136628165
+
+-----------------------------------------------------------------------
+GAUSSIAN
+epochs = 5
+
+x_mu_1 = x_start
+x_mu_2 = x_start + x_step
+x_mu_3 = x_start + 2 * x_step
+x_mu_4 = x_start + 3 * x_step
+
+y_mu_1 = y_start
+y_mu_2 = y_start + y_step
+y_mu_3 = y_start + 2 * y_step
+y_mu_4 = y_start + 3 * y_step
+
+z_mu_1 = z_start
+z_mu_2 = z_start + z_step
+z_mu_3 = z_start + 2 * z_step
+z_mu_4 = z_start + 3 * z_step
+
+mf = [[['gaussmf', {'mean': x_mu_1, 'sigma': x_sigma}], ['gaussmf', {'mean': x_mu_2, 'sigma': x_sigma}],
+       ['gaussmf', {'mean': x_mu_3, 'sigma': x_sigma}],
+       ['gaussmf', {'mean': x_mu_4, 'sigma': x_sigma}]],
+      [['gaussmf', {'mean': y_mu_1, 'sigma': y_sigma}], ['gaussmf', {'mean': y_mu_2, 'sigma': y_sigma}],
+       ['gaussmf', {'mean': y_mu_3, 'sigma': y_sigma}],
+       ['gaussmf', {'mean': y_mu_4, 'sigma': y_sigma}]],
+      [['gaussmf', {'mean': z_mu_1, 'sigma': z_sigma}], ['gaussmf', {'mean': z_mu_2, 'sigma': z_sigma}],
+       ['gaussmf', {'mean': z_mu_3, 'sigma': z_sigma}],
+       ['gaussmf', {'mean': z_mu_4, 'sigma': z_sigma}]]]
+	   
+Total Error:  18.3926434774
+Average Error:  0.000561298934248
+
+
+
+
+----------------------------------------------------------------------
+SIGMF
+epochs = 5
+
+x_mu_1 = x_start
+x_mu_2 = x_start + x_step
+x_mu_3 = x_start + 2 * x_step
+x_mu_4 = x_start + 3 * x_step
+x_width_1 = 10*x_sigma
+x_slope_1 = 0.5
+
+y_mu_1 = y_start
+y_mu_2 = y_start + y_step
+y_mu_3 = y_start + 2 * y_step
+y_mu_4 = y_start + 3 * y_step
+y_width_1 = 10*y_sigma
+y_slope_1 = 0.5
+
+z_mu_1 = z_start
+z_mu_2 = z_start + z_step
+z_mu_3 = z_start + 2 * z_step
+z_mu_4 = z_start + 3 * z_step
+z_width_1 = 10*z_sigma
+z_slope_1 = 0.5
+
+mf = [[['sigmf', {'b': x_mu_1, 'c': x_slope_1}], ['sigmf', {'b': x_mu_2, 'c': x_slope_1}], ['sigmf', {'b': x_mu_3, 'c': x_slope_1}], ['sigmf', {'b': x_mu_4, 'c': x_slope_1}]],
+      [['sigmf', {'b': y_mu_1, 'c': y_slope_1}], ['sigmf', {'b': y_mu_2, 'c':y_slope_1}], ['sigmf', {'b': y_mu_3, 'c': y_slope_1}], ['sigmf', {'b': y_mu_4, 'c': y_slope_1}]],
+      [['sigmf', {'b': z_mu_1, 'c': z_slope_1}], ['sigmf', {'b': z_mu_2, 'c':z_slope_1}], ['sigmf', {'b': z_mu_3, 'c': z_slope_1}], ['sigmf', {'b': z_mu_4, 'c': z_slope_1}]]]
+
+	 
+Total Error:  3.37110393235
+Average Error:  0.000102877927623
+	  
+
+
+
+=----------------------------------------------------------------------
+Bell Curve
+
+x_mu_1 = x_start
+x_width_1 = 2*x_sigma
+x_slope_1 = 2
+
+y_mu_1 = y_start
+y_width_1 = 2*y_sigma
+y_slope_1 = 5
+
+z_mu_1 = z_start
+z_width_1 = 2*z_sigma
+z_slope_1 = 1
+
+5 epochs
+Total Error:  3.10789636614
+Average Error:  9.48454701581e-05
+
+=----------------------------------------------------------------------
+Bell Curve
+
+x_mu_1 = x_start
+x_width_1 = 2*x_sigma
+x_slope_1 = 2
+
+y_mu_1 = y_start
+y_width_1 = 2*y_sigma
+y_slope_1 = 2
+
+z_mu_1 = z_start
+z_width_1 = 2*z_sigma
+z_slope_1 = 2
+
+5 epochs
+Total Error:  7.48493532903
+Average Error:  0.000228422098664
+
+=----------------------------------------------------------------------
+Bell Curve
+
+x_mu_1 = x_start
+x_width_1 = 2*x_sigma
+x_slope_1 = 5
+
+y_mu_1 = y_start
+y_width_1 = 2*y_sigma
+y_slope_1 = 5
+
+z_mu_1 = z_start
+z_width_1 = 2*z_sigma
+z_slope_1 = 5
+
+5 epochs
+Total Error:  22.0189783774
+Average Error:  0.000671965892864
+
+=----------------------------------------------------------------------
+Bell Curve
+
+x_mu_1 = x_start
+x_width_1 = 2*x_sigma
+x_slope_1 = 1
+
+y_mu_1 = y_start
+y_width_1 = 2*y_sigma
+y_slope_1 = 1
+
+z_mu_1 = z_start
+z_width_1 = 2*z_sigma
+z_slope_1 = 1
+
+Total Error:  3.02408203584
+Average Error:  9.22876597851e-05
+
+
+=----------------------------------------------------------------------
+Bell Curve
+
+x_mu_1 = x_start
+x_width_1 = 5*x_sigma
+x_slope_1 = 1
+
+y_mu_1 = y_start
+y_width_1 = 5*y_sigma
+y_slope_1 = 1
+
+z_mu_1 = z_start
+z_width_1 = 5*z_sigma
+z_slope_1 = 1
+
+Total Error:  1.28907342824
+Average Error:  3.93393990552e-05
+
+
+=----------------------------------------------------------------------
+Bell Curve
+
+x_mu_1 = x_start
+x_width_1 = 10*x_sigma
+x_slope_1 = 1
+
+y_mu_1 = y_start
+y_width_1 = 10*y_sigma
+y_slope_1 = 10
+
+z_mu_1 = z_start
+z_width_1 = 10*z_sigma
+z_slope_1 = 1
+
+Total Error:  7.20881929842
+Average Error:  0.000219995706128
+
+
+=----------------------------------------------------------------------
+Bell Curve
+
+x_mu_1 = x_start
+x_width_1 = 10*x_sigma
+x_slope_1 = 1
+
+y_mu_1 = y_start
+y_width_1 = 10*y_sigma
+y_slope_1 = 1
+
+z_mu_1 = z_start
+z_width_1 = 10*z_sigma
+z_slope_1 = 1
+
+Total Error:  0.429932347552
+Average Error:  1.31204940049e-05
+
+
+=----------------------------------------------------------------------
+Bell Curve
+
+x_mu_1 = x_start
+x_width_1 = 10*x_sigma
+x_slope_1 = 0.5
+
+y_mu_1 = y_start
+y_width_1 = 10*y_sigma
+y_slope_1 = 0.5
+
+z_mu_1 = z_start
+z_width_1 = 10*z_sigma
+z_slope_1 = 0.5
+
+Total Error:  2.33306141761
+Average Error:  7.11993840823e-05
+
+
+=----------------------------------------------------------------------
+Bell Curve - 140 to 220 by 2
+5 epochs
+
+x_mu_1 = x_start
+x_width_1 = 10*x_sigma
+x_slope_1 = 1
+
+y_mu_1 = y_start
+y_width_1 = 10*y_sigma
+y_slope_1 = 1
+
+z_mu_1 = z_start
+z_width_1 = 10*z_sigma
+z_slope_1 = 1
+
+Total Error:  273.945
+Average Error:  0.0083
+
+
+
