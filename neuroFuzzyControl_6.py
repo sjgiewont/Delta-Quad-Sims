@@ -3,11 +3,12 @@ import membership #import membershipfunction, mfDerivs
 import numpy as np
 import time
 import cPickle as pickle
+from fuzzyErrorTest import fuzzy_error_test
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 
 # ts = numpy.loadtxt("trainingSet.txt", usecols=[1,2,3])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
-ts = np.loadtxt("table_140_220_two.csv", delimiter=',', usecols=[0,1,2,3,4,5])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
+ts = np.loadtxt("small_test_table_170_190_2.csv", delimiter=',', usecols=[0,1,2,3,4,5])#numpy.loadtxt('c:\\Python_fiddling\\myProject\\MF\\trainingSet.txt',usecols=[1,2,3])
 
 # using coord input, theta output
 # X = ts[:,0:3]
@@ -82,26 +83,30 @@ mf = [[['gbellmf', {'a': x_width_1, 'b': x_slope_1, 'c': x_mu_1}],
 x = np.linspace(np.min(x)+np.min(x)/2, np.max(x)+np.max(x)/2, 100)
 z_linspace = np.linspace(np.min(z)-z_sigma, np.max(z)+z_sigma, 100)
 
-
 print "Starting membership function"
 mfc = membership.membershipfunction.MemFuncs(mf)
 
 print "Finished membership function, starting ANFIS"
 anf = anfis.ANFIS(X, Y, mfc)
 
-anf.plotMF(x, 0)
-anf.plotMF(x, 1)
-anf.plotMF(z_linspace, 2)
+# anf.plotMF(x, 0)
+# anf.plotMF(x, 1)
+# anf.plotMF(z_linspace, 2)
 
 t = time.time()
 
 print "Finished ANFIS, starting training Hybrid"
 anf.trainHybridJangOffLine(epochs=5)
 
-with open('fuzzy_test_bell.pkl', 'wb') as f:
+with open('small_fuzzy_test_bell.pkl', 'wb') as f:
     pickle.dump(anf, f, pickle.HIGHEST_PROTOCOL)
 
 print time.time() - t
+
+total_error, average_error = fuzzy_error_test(anf, "test_table_176_184.csv")
+
+print "The total error is: ", total_error
+print "The average error is: ", average_error
 
 # var = numpy.array([[3, 4], [3, 4]])
 var = np.array([[0,0,-207]])
@@ -118,5 +123,5 @@ print "input", var
 # print the predicted value based on the trained set
 print "The answer is", anfis.predict(anf, var)
 
-anf.plotErrors()
-anf.plotResults()
+# anf.plotErrors()
+# anf.plotResults()

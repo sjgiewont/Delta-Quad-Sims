@@ -9,6 +9,7 @@ import numpy as np
 from membership import mfDerivs
 import copy
 import cPickle as pickle
+import logging
 
 class ANFIS:
     """Class to implement an Adaptive Network Fuzzy Inference System: ANFIS"
@@ -68,8 +69,10 @@ class ANFIS:
 
             #layer five: least squares estimate
             print "Finding Least Square Element"
+            logging.info("Finding Least Square Element")
             layerFive = np.array(self.LSE(layerFour,self.Y,initialGamma))
             print "Least Square element found"
+            logging.info("Least Square element found")
             self.consequents = layerFive
             layerFive = np.dot(layerFour,layerFive)
 
@@ -79,6 +82,7 @@ class ANFIS:
                 error = np.sum((self.Y - layerFive) ** 2)
             else:
                 error = np.sum((self.Y-layerFive.T)**2)
+            logging.info("Current Error: %f", error)
             print 'current error: ', error
             if layerFive.shape[1] > 1:
                 average_error = np.average(np.absolute(self.Y-layerFive))
@@ -94,8 +98,10 @@ class ANFIS:
             if convergence is not True:
                 cols = range(len(self.X[0,:]))
                 print "Starting BackProp"
+                logging.info("Starting BackProp")
                 dE_dAlpha = list(backprop(self, colX, cols, wSum, w, layerFive) for colX in range(self.X.shape[1]))
                 print "Backprop Finished"
+                logging.info("BackProp Finished")
 
 
             if len(self.errors) >= 4:
@@ -137,6 +143,7 @@ class ANFIS:
                         self.memFuncs[varsWithMemFuncs][MFs][1][paramList[param]] = self.memFuncs[varsWithMemFuncs][MFs][1][paramList[param]] + dAlpha[varsWithMemFuncs][MFs][param]
             epoch = epoch + 1
             print "The Current Epoch is: ", epoch
+            logging.info("The Current Epoch is: %d", epoch)
             pkl_file_name = "fuzzy_test_%d.pkl" % epoch
             with open(pkl_file_name, 'wb') as f:
                 pickle.dump(self, f, pickle.HIGHEST_PROTOCOL)
@@ -201,6 +208,7 @@ def forwardHalfPass(ANFISObj, Xs):
     for pattern in range(len(Xs[:,0])):
         if count == 100:
             count = 0
+            logging.info("Forward pass: %d", pattern)
             print "Forward Pass: ", pattern
 
         count += 1
@@ -241,10 +249,12 @@ def backprop(ANFISObj, columnX, columns, theWSum, theW, theLayerFive):
     paramGrp = [0]* len(ANFISObj.memFuncs[columnX])
     for MF in range(len(ANFISObj.memFuncs[columnX])):
         print "Backprop MF: ", MF
+        logging.info("Backprop MF: %d", MF)
         parameters = np.empty(len(ANFISObj.memFuncs[columnX][MF][1]))
         timesThru = 0
         for alpha in sorted(ANFISObj.memFuncs[columnX][MF][1].keys()):
             print "BackProp alpha: ", alpha
+            logging.info("Backprop Alpha: %s", alpha)
             bucket3 = np.empty(len(ANFISObj.X))
             for rowX in range(len(ANFISObj.X)):
                 varToTest = ANFISObj.X[rowX,columnX]
