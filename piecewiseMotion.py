@@ -61,7 +61,7 @@ def piecewiseMotion_3(step_length, step_height, step_angle, leg_height, step_pre
     # step_precision = the number of step increments the motion will be broken into (the more the better precision)
 
     # define the percentage of time it takes to lift the leg
-    step_up_time = float(0.5)
+    step_up_time = float(0.25)
 
     # define the two end points based on the step length and the angle of the step
     pos_0 = np.array([-step_length*np.sin(np.deg2rad(step_angle)), -step_length*np.cos(np.deg2rad(step_angle)), leg_height])
@@ -79,14 +79,14 @@ def piecewiseMotion_3(step_length, step_height, step_angle, leg_height, step_pre
     # the rate of change and starting point of the dragging motion wrt
     # define a matrix of Z axis parabolic conditions and its arguments, need to solve for constants of this relation
     # z(t) = at^2 + bt + c  --> need to solve for a, b, c
-    z_matrix = np.matrix([[0, 0, 1], [step_up_time**2, step_up_time, 1], [(step_up_time/2)**2, (step_up_time/2), 1]])
-    z_conditions = np.matrix([[pos_1[2]], [pos_0[2]], [leg_height + step_height]])
+    z_matrix = np.matrix([[0, 0, 1], [(1-step_up_time)**2, (1-step_up_time), 1], [(1 - step_up_time/2)**2, (1 - step_up_time/2), 1]])
+    z_conditions = np.matrix([[pos_1[2]], [pos_0[2]], [leg_height - step_height]])
     z_constants = z_matrix.I * z_conditions
 
     # determine all the values defined by the piecewise functions
     piecewise_x = np.piecewise(t, [(t >= 0) & (t <= step_up_time), t > step_up_time], [lambda t: (1 - m_step*t)*pos_0[0] + m_step*t*pos_1[0], lambda t: (1 - (m_drag*t + b_drag))*pos_1[0] + (m_drag*t + b_drag)*pos_0[0]])
     piecewise_y = np.piecewise(t, [(t >= 0) & (t <= step_up_time), t > step_up_time], [lambda t: (1 - m_step*t)*pos_0[1] + m_step*t*pos_1[1], lambda t: (1 - (m_drag*t + b_drag))*pos_1[1] + (m_drag*t + b_drag)*pos_0[1]])
-    piecewise_z = np.piecewise(t, [(t >= 0) & (t <= step_up_time), (t > step_up_time)], [lambda t: leg_height + ((step_length / 2) * np.sin(pi - (2*(pi * t)))), lambda t: z_constants[0,0]*(0.5-t)**2 - z_constants[1,0]*(0.5-t) + z_constants[2,0]])
+    piecewise_z = np.piecewise(t, [(t >= 0) & (t <= step_up_time), (t > step_up_time)], [lambda t: leg_height + ((step_length ) * np.sin(pi - (4*(pi * t)))), lambda t: z_constants[0,0]*(0.25-t)**2 - z_constants[1,0]*(0.25-t) + z_constants[2,0]])
 
     plt.plot(t, piecewise_x)
     plt.show()
