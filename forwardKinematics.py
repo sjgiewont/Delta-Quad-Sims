@@ -31,12 +31,12 @@ def trilaterate(P1,P2,P3,r1,r2,r3):
 
 def forwardKinematics(theta_1, theta_2, theta_3):
     # length from center of base to axis of rotation
-    base_radius = 55
+    base_radius = 52.372
     # length from center of platform (foot) to axis of rotation
-    foot_radius = 25
+    foot_radius = 38.206
     # length of arm and leg
-    arm = 110
-    leg = 266.7
+    arm = 105.775
+    leg = 204.478
 
     # define the position where the arms meet the base
     base_p1 = np.array([base_radius * np.cos(np.deg2rad(90)), base_radius * np.sin(np.deg2rad(90)), 0])
