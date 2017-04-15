@@ -18,6 +18,8 @@ try:
 
     # test_table_csv = "test_table_176_184.csv"
 
+    min_total_error = float("inf")
+
     for pickle_file in glob.glob("*.pkl"):
         print(pickle_file)
         logging.info("PICKLE FILE: %s", pickle_file)
@@ -28,6 +30,12 @@ try:
         logging.info("Total Error: %s", total_error)
         logging.info("Total Error: %s", average_error)
 
+        if total_error < min_total_error:
+            min_total_error = total_error
+            min_total_error_pickle = pickle_file
+
+    logging.info("The best pickle is: %s", min_total_error_pickle)
+    logging.info("With a total error of: %s", min_total_error)
 
 except:
     logging.exception('An exception has occured!!')
