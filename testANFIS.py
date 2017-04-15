@@ -20,7 +20,7 @@ try:
 
     min_total_error = float("inf")
 
-    for pickle_file in glob.glob("*.pkl"):
+    for pickle_file in glob.glob("fuzzy_log_*.pkl"):
         print(pickle_file)
         logging.info("PICKLE FILE: %s", pickle_file)
 
@@ -28,7 +28,7 @@ try:
             anf = pickle.load(f)
         total_error, average_error = fuzzy_error_test(anf, validation_data_csv)
         logging.info("Total Error: %s", total_error)
-        logging.info("Total Error: %s", average_error)
+        logging.info("Average Error: %s", average_error)
 
         if total_error < min_total_error:
             min_total_error = total_error
