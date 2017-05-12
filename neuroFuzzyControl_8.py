@@ -19,13 +19,15 @@ from email.mime.text import MIMEText
 training_data_csv = sys.argv[1]
 epoch_num = sys.argv[2]
 
-while int(epoch_num) < 50:
+epoch_num_int = int(epoch_num)
+
+while epoch_num_int < 50:
 
     log_filename = []
     log_filename.append('fuzzy_log_')
     log_filename.append(training_data_csv[:-4])
     log_filename.append('_epoch_')
-    log_filename.append(epoch_num)
+    log_filename.append(str(epoch_num_int))
     log_filename.append('.log')
     log_filename = ''.join(log_filename)
 
@@ -133,7 +135,7 @@ while int(epoch_num) < 50:
 
         print "Finished ANFIS, starting training Hybrid"
         logging.info("Finished ANFIS, starting training Hybrid")
-        anf.trainHybridJangOffLine(epochs=int(epoch_num))
+        anf.trainHybridJangOffLine(epochs=epoch_num_int)
 
         pickle_filename = []
         pickle_filename.append(log_filename[:-4])
@@ -162,15 +164,15 @@ while int(epoch_num) < 50:
         # print the predicted value based on the trained set
         print "The answer is", anfis.predict(anf, var)
 
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login("favorfulxyz@gmail.com", "myfavorfulpassword1g")
+        #server = smtplib.SMTP('smtp.gmail.com', 587)
+        #server.starttls()
+        #server.login("favorfulxyz@gmail.com", "myfavorfulpassword1g")
 
-        msg = pickle_filename
-        server.sendmail("favorfulxyz@gmail.com", "stevyg11@gmail.com", msg)
-        server.quit()
+        #msg = pickle_filename
+        #server.sendmail("favorfulxyz@gmail.com", "stevyg11@gmail.com", msg)
+        #server.quit()
 
-        epoch_num = epoch_num + 5
+        epoch_num_int = epoch_num_int + 5
 
     except:
         logging.exception('An exception has occured!!')

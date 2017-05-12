@@ -20,7 +20,7 @@ try:
 
     min_total_error = float("inf")
 
-    for pickle_file in glob.glob("fuzzy_log_*.pkl"):
+    for pickle_file in glob.glob("fuzzy_log_test_table_90_*.pkl"):
         print(pickle_file)
         logging.info("PICKLE FILE: %s", pickle_file)
 
