@@ -1,3 +1,11 @@
+'''
+Includes a function that calculates the forward kinematics of the Delta-Quad leg
+
+Running this script calculates the forward kinematics for a range of determined angles, at a given step angle.
+
+All results are recorded to a single CSV file
+'''
+
 import numpy as np
 from numpy import sqrt, dot, cross
 from numpy.linalg import norm
@@ -29,6 +37,8 @@ def trilaterate(P1,P2,P3,r1,r2,r3):
     p_12_b = P1 + x*e_x + y*e_y - z*e_z
     return p_12_a,p_12_b
 
+# calculate the forward kienmatics
+# given angles 1,2,3 --> calculate point x,y,z
 def forwardKinematics(theta_1, theta_2, theta_3):
     # length from center of base to axis of rotation
     base_radius = 52.372
@@ -82,30 +92,27 @@ def forwardKinematics(theta_1, theta_2, theta_3):
 
     vmag = np.sqrt(vx_circle_intersect * vx_circle_intersect + vy_circle_intersect * vy_circle_intersect + vz_circle_intersect * vz_circle_intersect)
 
+    # calculate the normal vector to the platform
     vx = vx_circle_intersect / vmag
     vy = vy_circle_intersect / vmag
     vz = vz_circle_intersect / vmag
-
-    # foot_pt_x = round((circle_intersect_2[0] + vx * (height_intersect_2_platform)), 1)
-    # foot_pt_y = round((circle_intersect_2[1] + vy * (height_intersect_2_platform)), 1)
-    # foot_pt_z = round((circle_intersect_2[2] + vz * (height_intersect_2_platform)), 1)
 
     foot_pt_x = circle_intersect_2[0] + vx * (height_intersect_2_platform)
     foot_pt_y = circle_intersect_2[1] + vy * (height_intersect_2_platform)
     foot_pt_z = circle_intersect_2[2] + vz * (height_intersect_2_platform)
 
-    # foot_pt = np.array([foot_pt_x, foot_pt_y, foot_pt_z, theta_1, theta_2, theta_3])
-    # foot_pt = [foot_pt_x, foot_pt_y, foot_pt_z, theta_1, theta_2, theta_3]
-
     foot_pt = [foot_pt_x, foot_pt_y, foot_pt_z, theta_1, theta_2, theta_3, vx, vy, vz]
 
     return foot_pt
 
-
+# set the start and end angles
 theta_low = 100
 theta_high = 260
+
+# determine how many degrees to step at a time
 step = 3
 
+# calculate each forward kinematic and write each row to a csv file
 with open('test_table_100_260_3.csv', 'wb') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     # headers = ['x', 'y', 'z', 'theta1', 'theta2', 'theta3']

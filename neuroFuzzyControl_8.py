@@ -1,3 +1,12 @@
+'''
+Run this from the cmd line, with arguments including the training CSV and then the number of epochs
+python neuroFuzzyControl_7.py name_of_csv_file.csv number_of _epochs
+
+Will log all events to a .log file titled with the CSV filename and number of epochs used
+will also store the final pickle file with the CSV filename and the number of epochs used
+
+'''
+
 from myAnfis import anfis
 import membership #import membershipfunction, mfDerivs
 import numpy as np
@@ -8,12 +17,6 @@ import sys
 import logging
 import smtplib
 from email.mime.text import MIMEText
-
-# Run this from the cmd line, with arguments including the training CSV and then the number of epochs
-# python neuroFuzzyControl_7.py name_of_csv_file.csv number_of _epochs
-#
-# Will log all events to a .log file titled with the CSV filename and number of epochs used
-# will also store the final pickle file with the CSV filename and the number of epochs used
 
 
 training_data_csv = sys.argv[1]
@@ -30,8 +33,6 @@ while epoch_num_int < 50:
     log_filename.append(str(epoch_num_int))
     log_filename.append('.log')
     log_filename = ''.join(log_filename)
-
-
 
     # msg = MIMEText(log_filename)
     # msg['Subject'] = 'ANFIS Pickle File Done'

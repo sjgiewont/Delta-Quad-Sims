@@ -1,3 +1,7 @@
+'''
+Find rows in a CSV file that are between a few values. 
+'''
+
 import numpy as np
 import time
 import csv
@@ -13,7 +17,6 @@ start = -170
 step = 1
 
 end_range = start - step
-
 
 while -300 < end_range:
     Z_index = np.array(np.where((Z <= start) & (Z > end_range)))

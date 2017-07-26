@@ -76,7 +76,7 @@ def walk_dir(degrees, step_num, precision):
     #calculate the walking trajectory of one step
     # walking_trajectory = piecewiseMotion(degrees, precision)
 
-    walking_trajectory = piecewiseMotion_3(100, 10, degrees, -220, precision)
+    walking_trajectory = piecewiseMotion_2(100, 10, degrees, -220, precision)
 
     # initialize the index of each leg, offset all of them
     FL_leg_index = 0

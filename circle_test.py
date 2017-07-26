@@ -1,12 +1,28 @@
+'''
+A calculation script to calculate the intersection of two 2D circles and the common point below the intersection. 
+
+The position of the "toe" of the Delta-Leg can be modeled as the intersection of 3 circles (the 3 "tibias" revolving 
+around the knee joint). To simplify this initially, we use 2 circles in 2D, and calculate the intersection between the 
+two circles and then the point normal to the vector created by the center positions of the two circles, where the
+distance between the two circle edges is a set distance (diameter of the platform)
+
+A plot is created to visualize. 
+'''
+
 import numpy as np
 import pylab #Imports matplotlib and a host of other useful modules
 
-foot_radius = 25  # 25
+# radius of the foot, platform
+foot_radius = 25
+
+# the length of the leg/tibia
 leg = 200
 
+# establish the parameters of two circles
 circle_1 = np.array([-50, -75, 200])
 circle_2 = np.array([200, 0, 200])
 
+# calculate the distance between the two circle centers
 d = np.hypot(circle_2[0]-circle_1[0], circle_2[1]-circle_1[1])
 
 x = (circle_1[2]*circle_1[2] - circle_2[2]*circle_2[2] + d*d)/(2*d)
@@ -15,20 +31,24 @@ y = np.sqrt(circle_1[2]*circle_1[2] - x*x)
 ex = (circle_2[0] - circle_1[0]) / d
 ey = (circle_2[1] - circle_1[1]) / d
 
+# calculate the two possible points of intersection
 P1 = np.array([circle_1[0] + x * ex - y * ey, circle_1[1] + x * ey + y * ex])
 P2 = np.array([circle_1[0] + x * ex + y * ey, circle_1[1] + x * ey - y * ex])
 
 print P1, P2
 
+# angles between the center points and intersection points
 theta_start_1 = np.degrees(np.arctan2(P2[1]-circle_1[1],P2[0] - circle_1[0]))
 theta_start_2 = np.degrees(np.arctan2(P2[1] - circle_2[1],P2[0] - circle_2[0]))
 print "theta_start", theta_start_1, theta_start_2
 
+# angles between two circles
 circle_angle_1 = np.degrees(np.arctan2(circle_2[1]-circle_1[1],circle_2[0] - circle_1[0]))
 circle_angle_2 = np.degrees(np.arctan2(circle_1[1]-circle_2[1],circle_1[0] - circle_2[0]))
 
 print "circle angle", circle_angle_1, circle_angle_2
 
+# calculate the angle of the trapezoid
 sin_theta = np.sqrt((leg*leg) - (0.25 * (d - foot_radius) * (d - foot_radius))) / leg
 trap_theta = np.degrees(np.arcsin(sin_theta))
 print "trap angle", (trap_theta)
@@ -61,9 +81,11 @@ platform_c = (f1[0] - f2[0]) * f1[1] + (f2[1] - f1[1]) * f1[0]
 
 print platform_a, platform_b, platform_c
 
+# calculate the distance between the circle center and the platform
 circle_2_platform_dist = (np.abs(platform_a*P2[0] + platform_b*P2[1] + platform_c)) / np.sqrt(platform_a*platform_a + platform_b*platform_b)
 print circle_2_platform_dist
 
+# calculate the distance from the circle intersection to the platform.
 height_intersect = np.sqrt(leg*leg - 0.25*(d*d))
 height_platform = np.sqrt(leg*leg - 0.25*(d - foot_radius)*(d - foot_radius))
 intersect_2_platform_dist = height_platform - height_intersect
@@ -79,6 +101,7 @@ vmag = np.sqrt(vx_circle_intersect*vx_circle_intersect + vy_circle_intersect*vy_
 vx = vx_circle_intersect / vmag
 vy = vy_circle_intersect / vmag
 
+# given the distance from the intersection to the platform, find the point in space
 foot_pt_x = (P2[0] + vx * (intersect_2_platform_dist))
 foot_pt_y = (P2[1] + vy * (intersect_2_platform_dist))
 foot_pt = np.array([foot_pt_x, foot_pt_y])

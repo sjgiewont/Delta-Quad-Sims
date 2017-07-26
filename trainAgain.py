@@ -1,3 +1,7 @@
+'''
+A script to test the ability to continue training an ANFIS network after it has already been trained over several epochs
+'''
+
 from myAnfis import anfis
 import membership #import membershipfunction, mfDerivs
 import numpy

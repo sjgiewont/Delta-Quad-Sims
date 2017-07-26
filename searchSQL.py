@@ -1,3 +1,7 @@
+'''
+Used to search an SQL database and time how long it takes
+'''
+
 import sqlite3
 import time
 

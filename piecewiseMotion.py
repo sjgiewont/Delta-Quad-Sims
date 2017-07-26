@@ -1,3 +1,9 @@
+'''
+This script generates the piecewise trajectory given various required parameters. 
+
+Each function generates a slightly different trajectory type. 
+'''
+
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -43,6 +49,11 @@ def piecewiseMotion_2(step_length, step_height, step_angle, leg_height, step_pre
     plt.plot(t, piecewise_y)
     plt.show()
     plt.plot(t, piecewise_z)
+    plt.show()
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(piecewise_x, piecewise_y, piecewise_z)
     plt.show()
 
     piecewise = []
@@ -122,7 +133,6 @@ def piecewiseMotion(degrees, precision):
         piecewise.append([piecewise_x[i], piecewise_y[i], piecewise_z[i]])
 
 
-    #
     # Plot the Piecewise Functions
     plt.plot(t, piecewise_x)
     plt.show()

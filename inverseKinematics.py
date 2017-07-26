@@ -1,3 +1,7 @@
+'''
+This calculates the inverse kinematics of a classic Delta robot, NOT a Delta-Quad
+'''
+
 import numpy as np
 from math import sqrt,pow,degrees,atan,pi, tan, cos, sin
 

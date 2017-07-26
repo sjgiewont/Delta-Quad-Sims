@@ -1,3 +1,11 @@
+'''
+This script takes an input argument consisting of the CSV filename of the validation table. Must run from CMD line
+
+This will find all ANFIS .pkl files in current directory and calculate the error achieved from using each one. 
+
+All results are logged to a .log file, records which ANFIS .pkl file performed the best
+'''
+
 from fuzzyErrorTest import *
 import glob, os, sys
 import logging
