@@ -1,0 +1,277 @@
+2017-04-15 14:43:21,667 Logging Data for neuroFuzzyControl_7
+2017-04-15 14:43:21,667 Training CSV = small_test_table_170_190_2.csv
+2017-04-15 14:43:21,668 Epochs = 3
+2017-04-15 14:43:21,668 Started Loading Training Data
+2017-04-15 14:43:21,694 Finished Loading Training Data
+2017-04-15 14:43:21,694 [[  0.00000000e+00  -1.42108547e-14  -1.99091243e+02]
+ [ -2.56044609e+00   1.47827424e+00  -2.00182882e+02]
+ [ -5.17857897e+00   2.98985396e+00  -2.01251419e+02]
+ ..., 
+ [  6.32540798e+00  -3.65197600e+00  -2.30193843e+02]
+ [  3.19379524e+00  -1.84393854e+00  -2.31655339e+02]
+ [  0.00000000e+00   0.00000000e+00  -2.33073100e+02]]
+2017-04-15 14:43:21,696 [[ 170.  170.  170.]
+ [ 170.  170.  172.]
+ [ 170.  170.  174.]
+ ..., 
+ [ 188.  188.  184.]
+ [ 188.  188.  186.]
+ [ 188.  188.  188.]]
+2017-04-15 14:43:21,698 Starting membership function
+2017-04-15 14:43:21,700 Finished membership function, starting ANFIS
+2017-04-15 14:43:21,700 Finished ANFIS, starting training Hybrid
+2017-04-15 14:43:21,836 Forward pass: 100
+2017-04-15 14:43:21,974 Forward pass: 200
+2017-04-15 14:43:22,128 Forward pass: 300
+2017-04-15 14:43:22,282 Forward pass: 400
+2017-04-15 14:43:22,489 Forward pass: 500
+2017-04-15 14:43:22,729 Forward pass: 600
+2017-04-15 14:43:22,986 Forward pass: 700
+2017-04-15 14:43:23,282 Forward pass: 800
+2017-04-15 14:43:23,618 Forward pass: 900
+2017-04-15 14:43:23,885 Finding Least Square Element
+2017-04-15 14:43:25,931 An exception has occured!!
+Traceback (most recent call last):
+  File "neuroFuzzyControl_7.py", line 120, in <module>
+    anf.trainHybridJangOffLine(epochs=int(epoch_num))
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\myAnfis\anfis.py", line 73, in trainHybridJangOffLine
+    layerFive = np.array(self.LSE(layerFour,self.Y,initialGamma))
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\myAnfis\anfis.py", line 55, in LSE
+    S = S - (np.array(np.dot(np.dot(np.dot(S,np.matrix(a).transpose()),np.matrix(a)),S)))/(1+(np.dot(np.dot(S,a),a)))
+KeyboardInterrupt
+2017-04-15 14:44:34,213 Logging Data for neuroFuzzyControl_7
+2017-04-15 14:44:34,213 Training CSV = small_test_table_170_190_2.csv
+2017-04-15 14:44:34,213 Epochs = 3
+2017-04-15 14:44:34,213 Started Loading Training Data
+2017-04-15 14:44:34,246 Finished Loading Training Data
+2017-04-15 14:44:34,246 [[  0.00000000e+00  -1.42108547e-14  -1.99091243e+02]
+ [ -2.56044609e+00   1.47827424e+00  -2.00182882e+02]
+ [ -5.17857897e+00   2.98985396e+00  -2.01251419e+02]
+ ..., 
+ [  6.32540798e+00  -3.65197600e+00  -2.30193843e+02]
+ [  3.19379524e+00  -1.84393854e+00  -2.31655339e+02]
+ [  0.00000000e+00   0.00000000e+00  -2.33073100e+02]]
+2017-04-15 14:44:34,246 [[ 170.  170.  170.]
+ [ 170.  170.  172.]
+ [ 170.  170.  174.]
+ ..., 
+ [ 188.  188.  184.]
+ [ 188.  188.  186.]
+ [ 188.  188.  188.]]
+2017-04-15 14:44:34,249 Starting membership function
+2017-04-15 14:44:34,250 Finished membership function, starting ANFIS
+2017-04-15 14:44:34,250 Finished ANFIS, starting training Hybrid
+2017-04-15 14:44:34,381 Forward pass: 100
+2017-04-15 14:44:34,516 Forward pass: 200
+2017-04-15 14:44:34,671 Forward pass: 300
+2017-04-15 14:44:34,835 Forward pass: 400
+2017-04-15 14:44:35,025 Forward pass: 500
+2017-04-15 14:44:35,255 Forward pass: 600
+2017-04-15 14:44:35,510 Forward pass: 700
+2017-04-15 14:44:35,773 Forward pass: 800
+2017-04-15 14:44:36,045 Forward pass: 900
+2017-04-15 14:44:36,367 Finding Least Square Element
+2017-04-15 14:44:39,404 Least Square element found
+2017-04-15 14:44:39,405 Current Error: 0.085732
+2017-04-15 14:44:39,405 Starting BackProp
+2017-04-15 14:44:39,407 Backprop MF: 0
+2017-04-15 14:44:39,407 Backprop Alpha: a
+2017-04-15 14:44:47,184 Backprop Alpha: b
+2017-04-15 14:44:55,148 Backprop Alpha: c
+2017-04-15 14:45:02,788 Backprop MF: 1
+2017-04-15 14:45:02,788 Backprop Alpha: a
+2017-04-15 14:45:10,421 Backprop Alpha: b
+2017-04-15 14:45:17,621 Backprop Alpha: c
+2017-04-15 14:45:25,930 Backprop MF: 2
+2017-04-15 14:45:25,930 Backprop Alpha: a
+2017-04-15 14:45:33,484 Backprop Alpha: b
+2017-04-15 14:45:41,039 Backprop Alpha: c
+2017-04-15 14:45:48,273 Backprop MF: 3
+2017-04-15 14:45:48,273 Backprop Alpha: a
+2017-04-15 14:45:55,934 Backprop Alpha: b
+2017-04-15 14:46:04,161 Backprop Alpha: c
+2017-04-15 14:46:12,081 Backprop MF: 0
+2017-04-15 14:46:12,081 Backprop Alpha: a
+2017-04-15 14:46:21,361 Backprop Alpha: b
+2017-04-15 14:46:29,032 Backprop Alpha: c
+2017-04-15 14:46:36,657 Backprop MF: 1
+2017-04-15 14:46:36,657 Backprop Alpha: a
+2017-04-15 14:46:44,611 Backprop Alpha: b
+2017-04-15 14:46:53,451 Backprop Alpha: c
+2017-04-15 14:47:02,371 Backprop MF: 2
+2017-04-15 14:47:02,371 Backprop Alpha: a
+2017-04-15 14:47:09,414 Backprop Alpha: b
+2017-04-15 14:47:16,898 Backprop Alpha: c
+2017-04-15 14:47:24,153 Backprop MF: 3
+2017-04-15 14:47:24,154 Backprop Alpha: a
+2017-04-15 14:47:31,941 Backprop Alpha: b
+2017-04-15 14:47:38,167 An exception has occured!!
+Traceback (most recent call last):
+  File "neuroFuzzyControl_8.py", line 128, in <module>
+    pickle_filename.append('.pkl')
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\myAnfis\anfis.py", line 102, in trainHybridJangOffLine
+    dE_dAlpha = list(backprop(self, colX, cols, wSum, w, layerFive) for colX in range(self.X.shape[1]))
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\myAnfis\anfis.py", line 102, in <genexpr>
+    dE_dAlpha = list(backprop(self, colX, cols, wSum, w, layerFive) for colX in range(self.X.shape[1]))
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\myAnfis\anfis.py", line 272, in backprop
+    dW_dAplha = senSit * np.array([np.prod([ANFISObj.memClass.evaluateMF(tmpRow)[c][ANFISObj.rules[r][c]] for c in adjCols]) for r in rulesWithAlpha])
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\membership\membershipfunction.py", line 22, in evaluateMF
+    return [[self.funcDict[self.MFList[i][k][0]](rowInput[i],**self.MFList[i][k][1]) for k in range(len(self.MFList[i]))] for i in range(len(rowInput))]
+  File "C:\Python27\lib\site-packages\skfuzzy\membership\generatemf.py", line 126, in gbellmf
+    def gbellmf(x, a, b, c):
+KeyboardInterrupt
+2017-04-15 14:58:13,605 Logging Data for neuroFuzzyControl_7
+2017-04-15 14:58:13,605 Training CSV = small_test_table_170_190_2.csv
+2017-04-15 14:58:13,605 Epochs = 3
+2017-04-15 14:58:13,605 Started Loading Training Data
+2017-04-15 14:58:13,627 Finished Loading Training Data
+2017-04-15 14:58:13,627 [[  0.00000000e+00  -1.42108547e-14  -1.99091243e+02]
+ [ -2.56044609e+00   1.47827424e+00  -2.00182882e+02]
+ [ -5.17857897e+00   2.98985396e+00  -2.01251419e+02]
+ ..., 
+ [  6.32540798e+00  -3.65197600e+00  -2.30193843e+02]
+ [  3.19379524e+00  -1.84393854e+00  -2.31655339e+02]
+ [  0.00000000e+00   0.00000000e+00  -2.33073100e+02]]
+2017-04-15 14:58:13,628 [[ 170.  170.  170.]
+ [ 170.  170.  172.]
+ [ 170.  170.  174.]
+ ..., 
+ [ 188.  188.  184.]
+ [ 188.  188.  186.]
+ [ 188.  188.  188.]]
+2017-04-15 14:58:13,634 Starting membership function
+2017-04-15 14:58:13,634 Finished membership function, starting ANFIS
+2017-04-15 14:58:13,634 Finished ANFIS, starting training Hybrid
+2017-04-15 14:58:13,785 Forward pass: 100
+2017-04-15 14:58:13,921 Forward pass: 200
+2017-04-15 14:58:14,075 Forward pass: 300
+2017-04-15 14:58:14,230 Forward pass: 400
+2017-04-15 14:58:14,431 Forward pass: 500
+2017-04-15 14:58:14,664 Forward pass: 600
+2017-04-15 14:58:14,931 Forward pass: 700
+2017-04-15 14:58:15,210 Forward pass: 800
+2017-04-15 14:58:15,562 Forward pass: 900
+2017-04-15 14:58:15,951 Finding Least Square Element
+2017-04-15 14:58:19,542 Least Square element found
+2017-04-15 14:58:19,543 Current Error: 0.085732
+2017-04-15 14:58:19,545 Starting BackProp
+2017-04-15 14:58:19,546 Backprop MF: 0
+2017-04-15 14:58:19,546 Backprop Alpha: a
+2017-04-15 14:58:28,207 Backprop Alpha: b
+2017-04-15 14:58:28,503 An exception has occured!!
+Traceback (most recent call last):
+  File "neuroFuzzyControl_8.py", line 142, in <module>
+    anf.trainHybridJangOffLine(epochs=int(epoch_num))
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\myAnfis\anfis.py", line 102, in trainHybridJangOffLine
+    dE_dAlpha = list(backprop(self, colX, cols, wSum, w, layerFive) for colX in range(self.X.shape[1]))
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\myAnfis\anfis.py", line 102, in <genexpr>
+    dE_dAlpha = list(backprop(self, colX, cols, wSum, w, layerFive) for colX in range(self.X.shape[1]))
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\myAnfis\anfis.py", line 272, in backprop
+    dW_dAplha = senSit * np.array([np.prod([ANFISObj.memClass.evaluateMF(tmpRow)[c][ANFISObj.rules[r][c]] for c in adjCols]) for r in rulesWithAlpha])
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\membership\membershipfunction.py", line 22, in evaluateMF
+    return [[self.funcDict[self.MFList[i][k][0]](rowInput[i],**self.MFList[i][k][1]) for k in range(len(self.MFList[i]))] for i in range(len(rowInput))]
+KeyboardInterrupt
+2017-04-15 14:59:27,046 Logging Data for neuroFuzzyControl_7
+2017-04-15 14:59:27,046 Training CSV = small_test_table_170_190_2.csv
+2017-04-15 14:59:27,048 Epochs = 3
+2017-04-15 14:59:27,048 Started Loading Training Data
+2017-04-15 14:59:27,069 Finished Loading Training Data
+2017-04-15 14:59:27,069 [[  0.00000000e+00  -1.42108547e-14  -1.99091243e+02]
+ [ -2.56044609e+00   1.47827424e+00  -2.00182882e+02]
+ [ -5.17857897e+00   2.98985396e+00  -2.01251419e+02]
+ ..., 
+ [  6.32540798e+00  -3.65197600e+00  -2.30193843e+02]
+ [  3.19379524e+00  -1.84393854e+00  -2.31655339e+02]
+ [  0.00000000e+00   0.00000000e+00  -2.33073100e+02]]
+2017-04-15 14:59:27,071 [[ 170.  170.  170.]
+ [ 170.  170.  172.]
+ [ 170.  170.  174.]
+ ..., 
+ [ 188.  188.  184.]
+ [ 188.  188.  186.]
+ [ 188.  188.  188.]]
+2017-04-15 14:59:27,075 Starting membership function
+2017-04-15 14:59:27,075 Finished membership function, starting ANFIS
+2017-04-15 14:59:27,082 Finished ANFIS, starting training Hybrid
+2017-04-15 14:59:27,242 Forward pass: 100
+2017-04-15 14:59:27,453 Forward pass: 200
+2017-04-15 14:59:27,601 Forward pass: 300
+2017-04-15 14:59:27,750 Forward pass: 400
+2017-04-15 14:59:27,948 Forward pass: 500
+2017-04-15 14:59:28,210 Forward pass: 600
+2017-04-15 14:59:28,477 Forward pass: 700
+2017-04-15 14:59:28,733 Forward pass: 800
+2017-04-15 14:59:29,016 Forward pass: 900
+2017-04-15 14:59:29,305 Finding Least Square Element
+2017-04-15 14:59:32,345 Least Square element found
+2017-04-15 14:59:32,346 Current Error: 0.085732
+2017-04-15 14:59:32,346 Starting BackProp
+2017-04-15 14:59:32,346 Backprop MF: 0
+2017-04-15 14:59:32,348 Backprop Alpha: a
+2017-04-15 14:59:42,276 An exception has occured!!
+Traceback (most recent call last):
+  File "neuroFuzzyControl_8.py", line 142, in <module>
+    anf.trainHybridJangOffLine(epochs=int(epoch_num))
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\myAnfis\anfis.py", line 102, in trainHybridJangOffLine
+    dE_dAlpha = list(backprop(self, colX, cols, wSum, w, layerFive) for colX in range(self.X.shape[1]))
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\myAnfis\anfis.py", line 102, in <genexpr>
+    dE_dAlpha = list(backprop(self, colX, cols, wSum, w, layerFive) for colX in range(self.X.shape[1]))
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\myAnfis\anfis.py", line 276, in backprop
+    fConsequent = np.dot(np.append(ANFISObj.X[rowX,:],1.),ANFISObj.consequents[((ANFISObj.X.shape[1] + 1) * consequent):(((ANFISObj.X.shape[1] + 1) * consequent) + (ANFISObj.X.shape[1] + 1)),colY])
+  File "C:\Python27\lib\site-packages\numpy\lib\function_base.py", line 5019, in append
+    return concatenate((arr, values), axis=axis)
+KeyboardInterrupt
+2017-04-15 14:59:46,914 Logging Data for neuroFuzzyControl_7
+2017-04-15 14:59:46,914 Training CSV = small_test_table_170_190_2.csv
+2017-04-15 14:59:46,914 Epochs = 3
+2017-04-15 14:59:46,914 Started Loading Training Data
+2017-04-15 14:59:46,930 Finished Loading Training Data
+2017-04-15 14:59:46,930 [[  0.00000000e+00  -1.42108547e-14  -1.99091243e+02]
+ [ -2.56044609e+00   1.47827424e+00  -2.00182882e+02]
+ [ -5.17857897e+00   2.98985396e+00  -2.01251419e+02]
+ ..., 
+ [  6.32540798e+00  -3.65197600e+00  -2.30193843e+02]
+ [  3.19379524e+00  -1.84393854e+00  -2.31655339e+02]
+ [  0.00000000e+00   0.00000000e+00  -2.33073100e+02]]
+2017-04-15 14:59:46,931 [[ 170.  170.  170.]
+ [ 170.  170.  172.]
+ [ 170.  170.  174.]
+ ..., 
+ [ 188.  188.  184.]
+ [ 188.  188.  186.]
+ [ 188.  188.  188.]]
+2017-04-15 14:59:46,934 Starting membership function
+2017-04-15 14:59:46,934 Finished membership function, starting ANFIS
+2017-04-15 14:59:46,936 Finished ANFIS, starting training Hybrid
+2017-04-15 14:59:47,058 Forward pass: 100
+2017-04-15 14:59:47,180 Forward pass: 200
+2017-04-15 14:59:47,315 Forward pass: 300
+2017-04-15 14:59:47,471 Forward pass: 400
+2017-04-15 14:59:47,647 Forward pass: 500
+2017-04-15 14:59:47,888 Forward pass: 600
+2017-04-15 14:59:48,122 Forward pass: 700
+2017-04-15 14:59:48,427 Forward pass: 800
+2017-04-15 14:59:48,789 Forward pass: 900
+2017-04-15 14:59:49,168 Finding Least Square Element
+2017-04-15 14:59:51,529 Least Square element found
+2017-04-15 14:59:51,529 Current Error: 0.085732
+2017-04-15 14:59:51,529 Starting BackProp
+2017-04-15 14:59:51,530 Backprop MF: 0
+2017-04-15 14:59:51,530 Backprop Alpha: a
+2017-04-15 15:00:00,707 Backprop Alpha: b
+2017-04-15 15:00:08,969 Backprop Alpha: c
+2017-04-15 15:00:13,118 An exception has occured!!
+Traceback (most recent call last):
+  File "neuroFuzzyControl_8.py", line 142, in <module>
+    anf.trainHybridJangOffLine(epochs=int(epoch_num))
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\myAnfis\anfis.py", line 102, in trainHybridJangOffLine
+    dE_dAlpha = list(backprop(self, colX, cols, wSum, w, layerFive) for colX in range(self.X.shape[1]))
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\myAnfis\anfis.py", line 102, in <genexpr>
+    dE_dAlpha = list(backprop(self, colX, cols, wSum, w, layerFive) for colX in range(self.X.shape[1]))
+  File "C:\Users\stevy\OneDrive\Documents\Steven's Stuff\RIT 5\Robotics Research\Python\Delta_Quad_Sims\myAnfis\anfis.py", line 281, in backprop
+    acum = acum - theW[consequent,rowX] * np.sum(dW_dAplha)
+  File "C:\Python27\lib\site-packages\numpy\core\fromnumeric.py", line 1814, in sum
+    out=out, **kwargs)
+  File "C:\Python27\lib\site-packages\numpy\core\_methods.py", line 32, in _sum
+    return umr_sum(a, axis, dtype, out, keepdims)
+KeyboardInterrupt

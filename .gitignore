@@ -1,0 +1,6 @@
+*.pyc
+
+.idea/
+./training_data/lookup_150_211_half.csv
+./training_data/table_140_220_half.csv
+./training_data/test_table_161_199_25.csv

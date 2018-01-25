@@ -1,0 +1,97 @@
+2017-03-26 13:11:57,229 Logging Data for neuroFuzzyControl_7
+2017-03-26 13:11:57,229 Training CSV = small_test_table_170_190_2.csv
+2017-03-26 13:11:57,230 Epochs = 2
+2017-03-26 13:11:57,230 Started Loading Training Data
+2017-03-26 13:11:57,244 Finished Loading Training Data
+2017-03-26 13:11:57,244 [[  0.00000000e+00  -1.42108547e-14  -1.99091243e+02]
+ [ -2.56044609e+00   1.47827424e+00  -2.00182882e+02]
+ [ -5.17857897e+00   2.98985396e+00  -2.01251419e+02]
+ ..., 
+ [  6.32540798e+00  -3.65197600e+00  -2.30193843e+02]
+ [  3.19379524e+00  -1.84393854e+00  -2.31655339e+02]
+ [  0.00000000e+00   0.00000000e+00  -2.33073100e+02]]
+2017-03-26 13:11:57,246 [[ 170.  170.  170.]
+ [ 170.  170.  172.]
+ [ 170.  170.  174.]
+ ..., 
+ [ 188.  188.  184.]
+ [ 188.  188.  186.]
+ [ 188.  188.  188.]]
+2017-03-26 13:11:57,250 Starting membership function
+2017-03-26 13:11:57,250 Finished membership function, starting ANFIS
+2017-03-26 13:11:57,250 Finished ANFIS, starting training Hybrid
+2017-03-26 13:11:57,338 Forward pass: 100
+2017-03-26 13:11:57,428 Forward pass: 200
+2017-03-26 13:11:57,529 Forward pass: 300
+2017-03-26 13:11:57,634 Forward pass: 400
+2017-03-26 13:11:57,759 Forward pass: 500
+2017-03-26 13:11:57,901 Forward pass: 600
+2017-03-26 13:11:58,056 Forward pass: 700
+2017-03-26 13:11:58,217 Forward pass: 800
+2017-03-26 13:11:58,438 Forward pass: 900
+2017-03-26 13:11:58,634 Finding Least Square Element
+2017-03-26 13:11:59,917 Least Square element found
+2017-03-26 13:11:59,918 Current Error: 0.085732
+2017-03-26 13:11:59,918 Starting BackProp
+2017-03-26 13:11:59,918 Backprop MF: 0
+2017-03-26 13:11:59,920 Backprop Alpha: a
+2017-03-26 13:12:04,874 Backprop Alpha: b
+2017-03-26 13:12:09,230 Backprop Alpha: c
+2017-03-26 13:12:13,829 Backprop MF: 1
+2017-03-26 13:12:13,829 Backprop Alpha: a
+2017-03-26 13:12:18,348 Backprop Alpha: b
+2017-03-26 13:12:22,918 Backprop Alpha: c
+2017-03-26 13:12:27,358 Backprop MF: 2
+2017-03-26 13:12:27,358 Backprop Alpha: a
+2017-03-26 13:12:31,805 Backprop Alpha: b
+2017-03-26 13:12:36,163 Backprop Alpha: c
+2017-03-26 13:12:40,499 Backprop MF: 3
+2017-03-26 13:12:40,500 Backprop Alpha: a
+2017-03-26 13:12:45,128 Backprop Alpha: b
+2017-03-26 13:12:49,888 Backprop Alpha: c
+2017-03-26 13:12:55,298 Backprop MF: 0
+2017-03-26 13:12:55,298 Backprop Alpha: a
+2017-03-26 13:13:00,065 Backprop Alpha: b
+2017-03-26 13:13:04,992 Backprop Alpha: c
+2017-03-26 13:13:09,917 Backprop MF: 1
+2017-03-26 13:13:09,917 Backprop Alpha: a
+2017-03-26 13:13:14,877 Backprop Alpha: b
+2017-03-26 13:13:19,391 Backprop Alpha: c
+2017-03-26 13:13:24,038 Backprop MF: 2
+2017-03-26 13:13:24,039 Backprop Alpha: a
+2017-03-26 13:13:28,999 Backprop Alpha: b
+2017-03-26 13:13:34,141 Backprop Alpha: c
+2017-03-26 13:13:39,191 Backprop MF: 3
+2017-03-26 13:13:39,193 Backprop Alpha: a
+2017-03-26 13:13:43,996 Backprop Alpha: b
+2017-03-26 13:13:48,831 Backprop Alpha: c
+2017-03-26 13:13:53,755 Backprop MF: 0
+2017-03-26 13:13:53,756 Backprop Alpha: a
+2017-03-26 13:13:58,285 Backprop Alpha: b
+2017-03-26 13:14:02,683 Backprop Alpha: c
+2017-03-26 13:14:07,092 Backprop MF: 1
+2017-03-26 13:14:07,092 Backprop Alpha: a
+2017-03-26 13:14:11,503 Backprop Alpha: b
+2017-03-26 13:14:15,944 Backprop Alpha: c
+2017-03-26 13:14:20,453 Backprop MF: 2
+2017-03-26 13:14:20,453 Backprop Alpha: a
+2017-03-26 13:14:24,865 Backprop Alpha: b
+2017-03-26 13:14:29,427 Backprop Alpha: c
+2017-03-26 13:14:34,322 Backprop MF: 3
+2017-03-26 13:14:34,322 Backprop Alpha: a
+2017-03-26 13:14:39,210 Backprop Alpha: b
+2017-03-26 13:14:43,917 Backprop Alpha: c
+2017-03-26 13:14:48,536 BackProp Finished
+2017-03-26 13:14:48,536 The Current Epoch is: 2
+2017-03-26 13:14:48,634 Forward pass: 100
+2017-03-26 13:14:48,763 Forward pass: 200
+2017-03-26 13:14:48,858 Forward pass: 300
+2017-03-26 13:14:48,971 Forward pass: 400
+2017-03-26 13:14:49,082 Forward pass: 500
+2017-03-26 13:14:49,226 Forward pass: 600
+2017-03-26 13:14:49,381 Forward pass: 700
+2017-03-26 13:14:49,549 Forward pass: 800
+2017-03-26 13:14:49,755 Forward pass: 900
+2017-03-26 13:14:49,950 Wrote the PICKLE FILE: fuzzy_log_small_test_table_170_190_2_epoch_2.pkl
+2017-03-26 13:15:44,918 The total error is: 4.589063
+2017-03-26 13:15:44,918 The average error is: 0.000140
